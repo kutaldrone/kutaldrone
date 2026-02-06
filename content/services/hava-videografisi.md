@@ -1,7 +1,7 @@
 ---
-title: "Hava Videografisi"
-description: "Reklam, tanıtım ve etkinlikler için sinematik 4K/6K drone videoları. Smooth gimbal hareketleri ve profesyonel renk derecelendirme."
-image: "https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37e985fc6b9a71b797_Services%201.avif"
+title: İnşaa Süreç Takip
+description: İnşaa süreçlerini zamansal olarak takip etme
+image: /images/uploads/b47f1f_a77a5454765246e4ad4ef4d048ca5904~mv2.gif
 order: 2
 active: true
 ---
