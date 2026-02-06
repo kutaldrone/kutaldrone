@@ -15,9 +15,10 @@ export default function Header() {
     });
 
     const navLinks = [
-        { href: "#about", label: "Hakkımızda" },
+        { href: "/hakkimizda", label: "Hakkımızda" },
         { href: "#services", label: "Hizmetler" },
         { href: "#projects", label: "Projeler" },
+        { href: "/sss", label: "SSS" },
     ];
 
     return (

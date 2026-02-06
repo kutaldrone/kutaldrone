@@ -5,9 +5,17 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+# Media Library izleyicisi
+media_library:
+  name: uploadcare
+  config:
+    publicKey: YOUR_PUBLIC_KEY
+
 collections:
+  # PROJECTS
   - name: "projects"
     label: "Projeler"
+    label_singular:  "Proje"
     folder: "content/projects"
     create: true
     slug: "{{slug}}"
@@ -18,8 +26,10 @@ collections:
       - {label: "Açıklama", name: "description", widget: "text"}
       - {label: "Yayın Tarihi", name: "date", widget: "datetime"}
 
+  # TESTIMONIALS
   - name: "testimonials"
     label: "Referanslar"
+    label_singular: "Referans"
     folder: "content/testimonials"
     create: true
     slug: "{{slug}}"
@@ -29,9 +39,26 @@ collections:
       - {label: "Yorum", name: "quote", widget: "text"}
       - {label: "Profil Fotoğrafı", name: "image", widget: "image"}
 
+  # MEDIA GALLERY
+  - name: "gallery"
+    label: "Galeri"
+    label_singular: "Görsel"
+    folder: "content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Görsel/Video", name: "media", widget: "image"}
+      - {label: "Tür", name: "type", widget: "select", options: ["Fotoğraf", "Video"]}
+      - {label: "Kategori", name: "category", widget: "select", options: ["Hero", "Projeler", "Ekip", "Ekipman", "Diğer"]}
+      - {label: "Alt Text (SEO)", name: "alt", widget: "string"}
+      - {label: "Yüklenme Tarihi", name: "date", widget: "datetime"}
+
+  # SETTINGS
   - name: "settings"
     label: "Site Ayarları"
     files:
+      # GENERAL
       - label: "Genel Ayarlar"
         name: "general"
         file: "content/settings/general.json"
@@ -40,15 +67,17 @@ collections:
           - {label: "Site Açıklaması", name: "siteDescription", widget: "text"}
           - {label: "Logo", name: "logo", widget: "image"}
           - {label: "Telefon", name: "phone", widget: "string"}
-          - {label: "E-posta", name: "email", widget: "string"}
+          - {label: "E-posta", name: "email", widget: "string", required: false}
           - {label: "Adres", name: "address", widget: "text"}
       
+      # HERO
       - label: "Hero Section"
         name: "hero"
         file: "content/settings/hero.json"
         fields:
           - {label: "Ana Başlık (Satır 1)", name: "titleLine1", widget: "string"}
           - {label: "Ana Başlık (Satır 2)", name: "titleLine2", widget: "string"}
+          - {label: "Arka Plan Görseli", name: "backgroundImage", widget: "image"}
           - {label: "Buton 1 Metni", name: "button1Text", widget: "string"}
           - {label: "Buton 2 Metni", name: "button2Text", widget: "string"}
           - label: "Özellik Rozetleri"
@@ -57,3 +86,17 @@ collections:
             fields:
               - {label: "Metin", name: "text", widget: "string"}
               - {label: "İkon", name: "icon", widget: "string"}
+      
+      # TEAM
+      - label: "Ekip"
+        name: "team"
+        file: "content/settings/team.json"
+        fields:
+          - label: "Ekip Üyeleri"
+            name: "members"
+            widget: "list"
+            fields:
+              - {label: "İsim", name: "name", widget: "string"}
+              - {label: "Rol", name: "role", widget: "string"}
+              - {label: "Fotoğraf", name: "photo", widget: "image"}
+              - {label: "Bio", name: "bio", widget: "text"}

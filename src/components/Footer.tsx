@@ -3,22 +3,18 @@ import { Reveal } from "./Reveal";
 
 const navLinks = {
     main: [
-        { label: "Hakkımızda", href: "#about" },
+        { label: "Hakkımızda", href: "/hakkimizda" },
         { label: "Hizmetler", href: "#services" },
         { label: "Projeler", href: "#projects" },
-        { label: "İletişim", href: "#contact" },
+        { label: "SSS", href: "/sss" },
     ],
     legal: [
-        { label: "Gizlilik Politikası", href: "#" },
-        { label: "404 Sayfası", href: "#" },
-        { label: "Şifre Koruması", href: "#" },
+        { label: "Gizlilik Politikası", href: "/gizlilik" },
+        { label: "Kullanım Şartları", href: "/kullanim-sartlari" },
     ],
-    template: [
-        { label: "Stil Rehberi", href: "#" },
-        { label: "Talimatlar", href: "#" },
-        { label: "Bileşenler", href: "#" },
-        { label: "Değişiklik Günlüğü", href: "#" },
-        { label: "Lisanslar", href: "#" },
+    contact: [
+        { label: "Tel: 0552 950 13 67", href: "tel:05529501367" },
+        { label: "Tekirdağ/Süleymanpaşa", href: "/hakkimizda#map" },
     ],
 };
 
@@ -172,7 +168,7 @@ export default function Footer() {
                                     ))}
                                 </div>
                                 <div>
-                                    {navLinks.template.map((link) => (
+                                    {navLinks.contact.map((link) => (
                                         <Link
                                             key={link.label}
                                             href={link.href}
