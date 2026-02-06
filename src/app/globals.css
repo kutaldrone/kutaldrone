@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-light: #e6f0f5;
+    --bg-dark: #122122;
+    --accent-lime: #c5f536;
+    --text-dark: #122122;
+    --text-muted: #5a6a6d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    /* overflow-x: hidden is handled by Next.js or wrapper if needed, 
+       but keeping it here can be safe if Lenis is configured right. 
+       Removing native smooth scroll is key. */
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Sora', sans-serif;
+}
+
+/* Hero gradient text */
+.hero-gradient-text {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Logo marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee {
+    animation: marquee 30s linear infinite;
+}
+
+.marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Button hover effects */
+.btn-primary {
+    @apply inline-flex items-center gap-2 bg-[#c5f536] text-[#122122] px-5 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105;
+}
+
+.btn-secondary {
+    @apply inline-flex items-center gap-2 bg-white text-[#122122] px-5 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105;
+}
+
+/* Service card hover */
+.service-card {
+    @apply relative overflow-hidden rounded-3xl transition-all duration-500;
+}
+
+.service-card:hover .service-image {
+    transform: scale(1.05);
+}
+
+.service-card:hover .service-arrow {
+    transform: translateX(4px);
+}
+
+/* Parallax section */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Floating animation for drone */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Testimonial card */
+.testimonial-card {
+    @apply bg-[#1a3232] rounded-3xl p-8 md:p-12;
+}
+
+/* Project card overlay */
+.project-card {
+    @apply relative overflow-hidden rounded-3xl;
+}
+
+.project-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a0b5bd;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7a9aa5;
+}

@@ -1,0 +1,49 @@
+/* scroll-animations.css */
+:root {
+  --sa-ease: cubic-bezier(.2,.65,.12,1);
+}
+
+/* Ortak animasyon katmanı */
+[data-anim] {
+  /* Reveal + Parallax birlikte çalışır */
+  transform:
+    translate3d(var(--reveal-x, 0), var(--reveal-y, 0), 0)
+    translate3d(var(--parallax-x, 0), var(--parallax-y, 0), 0)
+    scale(var(--reveal-scale, 1));
+  opacity: var(--reveal-opacity, 1);
+
+  transition:
+    transform var(--reveal-duration, 800ms) var(--reveal-ease, var(--sa-ease)),
+    opacity var(--reveal-duration, 800ms) var(--reveal-ease, var(--sa-ease));
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+/* Reveal (görünür olana kadar gizleme) */
+[data-reveal] {
+  --reveal-opacity: 0;
+}
+
+/* Görünür olduğunda */
+[data-reveal].in {
+  --reveal-opacity: 1;
+  --reveal-x: 0px;
+  --reveal-y: 0px;
+  --reveal-scale: 1;
+}
+
+/* Yönler ve varsayılan mesafe */
+[data-reveal='up']    { --reveal-x: 0px;  --reveal-y: var(--reveal-distance, 24px); }
+[data-reveal='down']  { --reveal-x: 0px;  --reveal-y: calc(var(--reveal-distance, 24px) * -1); }
+[data-reveal='left']  { --reveal-x: var(--reveal-distance, 24px);  --reveal-y: 0px; }
+[data-reveal='right'] { --reveal-x: calc(var(--reveal-distance, 24px) * -1); --reveal-y: 0px; }
+[data-reveal='fade']  { --reveal-x: 0px;  --reveal-y: 0px; }
+
+/* Erişilebilirlik (hareket azalt) */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

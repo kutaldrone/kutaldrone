@@ -1,0 +1,24 @@
+{
+    "titleLine1": "Kutal",
+    "titleLine2": "Drone",
+    "button1Text": "Teklif Al",
+    "button2Text": "İşleri Gör",
+    "badges": [
+        {
+            "text": "Lisanslı & onaylı pilot",
+            "icon": "ShieldCheck"
+        },
+        {
+            "text": "Tam sigortalı uçuşlar",
+            "icon": "Umbrella"
+        },
+        {
+            "text": "Önce güvenlik operasyonları",
+            "icon": "AlertTriangle"
+        },
+        {
+            "text": "Hızlı teslimat",
+            "icon": "Zap"
+        }
+    ]
+}

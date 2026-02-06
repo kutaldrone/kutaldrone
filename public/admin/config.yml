@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projeler"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Kategori", name: "category", widget: "select", options: ["Denetim", "Etkinlikler", "Emlak", "Çevre", "Haritalama"]}
+      - {label: "Görsel", name: "image", widget: "image"}
+      - {label: "Açıklama", name: "description", widget: "text"}
+      - {label: "Yayın Tarihi", name: "date", widget: "datetime"}
+
+  - name: "testimonials"
+    label: "Referanslar"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "İsim", name: "name", widget: "string"}
+      - {label: "Rol", name: "role", widget: "string"}
+      - {label: "Yorum", name: "quote", widget: "text"}
+      - {label: "Profil Fotoğrafı", name: "image", widget: "image"}
+
+  - name: "settings"
+    label: "Site Ayarları"
+    files:
+      - label: "Genel Ayarlar"
+        name: "general"
+        file: "content/settings/general.json"
+        fields:
+          - {label: "Site Başlığı", name: "siteTitle", widget: "string"}
+          - {label: "Site Açıklaması", name: "siteDescription", widget: "text"}
+          - {label: "Logo", name: "logo", widget: "image"}
+          - {label: "Telefon", name: "phone", widget: "string"}
+          - {label: "E-posta", name: "email", widget: "string"}
+          - {label: "Adres", name: "address", widget: "text"}
+      
+      - label: "Hero Section"
+        name: "hero"
+        file: "content/settings/hero.json"
+        fields:
+          - {label: "Ana Başlık (Satır 1)", name: "titleLine1", widget: "string"}
+          - {label: "Ana Başlık (Satır 2)", name: "titleLine2", widget: "string"}
+          - {label: "Buton 1 Metni", name: "button1Text", widget: "string"}
+          - {label: "Buton 2 Metni", name: "button2Text", widget: "string"}
+          - label: "Özellik Rozetleri"
+            name: "badges"
+            widget: "list"
+            fields:
+              - {label: "Metin", name: "text", widget: "string"}
+              - {label: "İkon", name: "icon", widget: "string"}
