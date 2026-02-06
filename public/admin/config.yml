@@ -5,13 +5,6 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-# Media Library - Geliştirilmiş organizasyon
-media_library:
-  name: cloudinary
-  config:
-    cloud_name: kutal-drone
-    api_key: YOUR_API_KEY
-
 collections:
   # PROJECTS
   - name: "projects"
@@ -116,6 +109,20 @@ collections:
       - {label: "Açıklama", name: "description", widget: "text"}
       - {label: "Tarih", name: "date", widget: "datetime"}
       - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  # SERVICES (Hizmetler)
+  - name: "services"
+    label: "Hava Hizmetleri"
+    label_singular: "Hizmet"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Açıklama", name: "description", widget: "text"}
+      - {label: "Görsel", name: "image", widget: "image"}
+      - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
+      - {label: "Aktif", name: "active", widget: "boolean", default: true}
 
   # PRICING (Fiyatlandırma)
   - name: "pricing"

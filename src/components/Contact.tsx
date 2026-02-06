@@ -105,8 +105,8 @@ export default function Contact() {
                                     <img src="/logo.png" alt="Pilot" className="w-full h-full object-contain p-2 bg-white" />
                                 </div>
                                 <div>
-                                    <p className="font-bold font-heading text-lg">Kutal</p>
-                                    <p className="text-sm text-white/60">Drone Uzmanı</p>
+                                    <p className="font-bold font-heading text-lg">Umut</p>
+                                    <p className="text-sm text-white/60">Drone Operatörü</p>
                                 </div>
                             </div>
                         </motion.div>

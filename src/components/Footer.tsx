@@ -94,7 +94,7 @@ export default function Footer() {
                             </p>
                             <p className="text-white/70 mb-6">Projenizi konuşalım.</p>
                             <Link
-                                href="#"
+                                href="#contact"
                                 className="inline-flex items-center gap-2 bg-[#c5f536] text-[#122122] px-6 py-3 rounded-full font-medium hover:shadow-[0_0_20px_rgba(197,245,54,0.3)] hover:scale-105 transition-all duration-300"
                             >
                                 Teklif Al

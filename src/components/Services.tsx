@@ -2,6 +2,48 @@
 
 import { ArrowRight, Plus } from "lucide-react";
 import Image from "next/image";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+interface Service {
+    title: string;
+    description: string;
+    image: string;
+    order: number;
+    active: boolean;
+}
+
+// This runs server-side to fetch services
+async function getServices(): Promise<Service[]> {
+    const servicesDirectory = path.join(process.cwd(), "content/services");
+
+    // Check if directory exists
+    if (!fs.existsSync(servicesDirectory)) {
+        return [];
+    }
+
+    const filenames = fs.readdirSync(servicesDirectory);
+    const services = filenames
+        .filter(filename => filename.endsWith(".md"))
+        .map(filename => {
+            const filePath = path.join(servicesDirectory, filename);
+            const fileContents = fs.readFileSync(filePath, "utf8");
+            const { data } = matter(fileContents);
+
+            return {
+                title: data.title || "",
+                description: data.description || "",
+                image: data.image || "",
+                order: data.order || 0,
+                active: data.active !== false,
+            };
+        })
+        .filter(service => service.active)
+        .sort((a, b) => a.order - b.order);
+
+    return services;
+}
 
 const ServiceCard = ({ title, description, image, className }: { title: string, description: string, image: string, className?: string }) => {
     return (
@@ -40,7 +82,13 @@ const ServiceCard = ({ title, description, image, className }: { title: string, 
     );
 };
 
-export default function Services() {
+export default async function Services() {
+    const services = await getServices();
+
+    // Split into two rows
+    const firstRow = services.slice(0, 2);
+    const secondRow = services.slice(2, 4);
+
     return (
         <section id="services" className="bg-white py-32 px-4 md:px-8 scroll-mt-20">
             <div className="max-w-[100rem] mx-auto">
@@ -54,45 +102,45 @@ export default function Services() {
                     </p>
                 </div>
 
-                {/* Grid Layout - Split Group */}
+                {/* Grid Layout - Dynamic from CMS */}
                 <div className="flex flex-col gap-8 relative">
-
-                    {/* Width Constrained Container for the Grid */}
                     <div className="w-full">
                         {/* Row 1 */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                            <ServiceCard
-                                title="Hava Fotoğrafçılığı"
-                                description="Emlak, turizm ve pazarlama için yüksek çözünürlüklü hava fotoğrafları. Profesyonel ekipman ile 4K kalitesinde çekimler."
-                                image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37274d6e234b5f5a2f_Services%202.avif"
-                            />
-                            <ServiceCard
-                                title="Hava Videografisi"
-                                description="Reklam, tanıtım ve etkinlikler için sinematik 4K/6K drone videoları. Smooth gimbal hareketleri ve profesyonel renk derecelendirme."
-                                image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37e985fc6b9a71b797_Services%201.avif"
-                            />
-                        </div>
+                        {firstRow.length > 0 && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                {firstRow.map((service, i) => (
+                                    <ServiceCard
+                                        key={i}
+                                        title={service.title}
+                                        description={service.description}
+                                        image={service.image}
+                                    />
+                                ))}
+                            </div>
+                        )}
 
                         {/* Central Icon Bridge */}
-                        <div className="flex justify-center my-8">
-                            <div className="w-16 h-16 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400">
-                                <Plus className="w-8 h-8" />
+                        {secondRow.length > 0 && (
+                            <div className="flex justify-center my-8">
+                                <div className="w-16 h-16 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400">
+                                    <Plus className="w-8 h-8" />
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Row 2 */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <ServiceCard
-                                title="Teftiş & Denetim"
-                                description="Bina, baca, güneş paneli ve altyapı denetimi için güvenli hava incelemesi. Erişilmesi zor alanlarda maliyet etkin çözüm."
-                                image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37a44a663bba076d68_Services%203.avif"
-                            />
-                            <ServiceCard
-                                title="Haritalama & 3D Modelleme"
-                                description="İnşaat, tarım ve planlama için ortofoto haritalar ve hassas 3D modeller. Arazi ölçümü ve hacim hesaplamaları."
-                                image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c3734e413ca727e1fec_Services%204.avif"
-                            />
-                        </div>
+                        {secondRow.length > 0 && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {secondRow.map((service, i) => (
+                                    <ServiceCard
+                                        key={i}
+                                        title={service.title}
+                                        description={service.description}
+                                        image={service.image}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 
