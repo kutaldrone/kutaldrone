@@ -15,7 +15,7 @@ export const COMPANY = {
         lat: 40.97862142893125,
         lng: 27.512709254433055,
     },
-    url: "https://kutaldrone.netlify.app", // Will update with custom domain
+    url: "https://kutaldrone.com.tr",
     social: {
         instagram: "https://instagram.com/kutaldrone",
         youtube: "https://youtube.com/@utaldrone",
@@ -38,25 +38,32 @@ export function generateMetadata({
     noIndex?: boolean;
 }) {
     const fullTitle = `${title} | ${COMPANY.name}`;
+    const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${COMPANY.url}${ogImage}`;
 
     return {
         title: fullTitle,
         description,
         keywords: keywords?.join(", "),
         robots: noIndex ? "noindex, nofollow" : "index, follow",
+        authors: [{ name: COMPANY.name }],
+        creator: COMPANY.name,
+        publisher: COMPANY.name,
+        alternates: {
+            canonical: COMPANY.url,
+        },
         openGraph: {
             type: "website",
             locale: "tr_TR",
             url: COMPANY.url,
+            siteName: COMPANY.name,
             title: fullTitle,
             description,
-            siteName: COMPANY.name,
             images: [
                 {
-                    url: ogImage,
+                    url: absoluteOgImage,
                     width: 1200,
                     height: 630,
-                    alt: COMPANY.name,
+                    alt: title,
                 },
             ],
         },
@@ -64,10 +71,8 @@ export function generateMetadata({
             card: "summary_large_image",
             title: fullTitle,
             description,
-            images: [ogImage],
-        },
-        alternates: {
-            canonical: COMPANY.url,
+            images: [absoluteOgImage],
+            creator: "@kutaldrone",
         },
     };
 }

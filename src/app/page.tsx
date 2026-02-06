@@ -4,7 +4,7 @@ import { Hero } from "../components/Hero";
 // import Mission from "../components/Mission";
 // import Parallax from "../components/Parallax";
 import Services from "../components/Services";
-import Testimonials from "../components/Testimonials"; // Replaces Industries
+import Process from "../components/Process"; // Replaces Testimonials
 import RecentFlights from "../components/RecentFlights"; // Replaces Projects
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -19,7 +19,7 @@ export default function Home() {
             {/* <Mission /> */}
             {/* <Parallax /> */}
             <Services />
-            <Testimonials />
+            <Process />
             <RecentFlights />
             <Contact />
             <Footer />

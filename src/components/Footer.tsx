@@ -84,10 +84,10 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <Reveal delay={0.2} width="100%">
                             <h2 className="font-sora font-bold text-3xl md:text-4xl text-white mb-6">
-                                Pilotla Tanışın
+                                Drone Operatörüyle Tanışın
                             </h2>
                             <p className="text-white/70 mb-4 leading-relaxed">
-                                Merhaba, ben Kutal. Ticari ve özel müşteriler için profesyonel hava hizmetleri sunan lisanslı bir drone pilotuyum.
+                                Merhaba, ben Umut. Ticari ve özel müşteriler için profesyonel hava hizmetleri sunan lisanslı bir drone operatörüyüm.
                             </p>
                             <p className="text-white/70 mb-4 leading-relaxed">
                                 Güvenilir sonuçlar ve sorunsuz proje teslimi sağlamak için uçuş planlamasından çekime kadar her aşamada her müşteriyle doğrudan çalışırım.
@@ -144,8 +144,10 @@ export default function Footer() {
                             </div>
 
                             {/* Links Grid */}
-                            <div className="grid grid-cols-3 gap-8 mb-12">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                                {/* Sayfalar */}
                                 <div>
+                                    <h3 className="text-white font-semibold mb-4">Sayfalar</h3>
                                     {navLinks.main.map((link) => (
                                         <Link
                                             key={link.label}
@@ -156,18 +158,52 @@ export default function Footer() {
                                         </Link>
                                     ))}
                                 </div>
+
+                                {/* Hizmetler */}
                                 <div>
-                                    {navLinks.legal.map((link) => (
-                                        <Link
-                                            key={link.label}
-                                            href={link.href}
-                                            className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm font-medium"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
+                                    <h3 className="text-white font-semibold mb-4">Hizmetler</h3>
+                                    <Link
+                                        href="/emlak-drone-cekimi"
+                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
+                                    >
+                                        Emlak Drone
+                                    </Link>
+                                    <Link
+                                        href="/dugun-drone-cekimi"
+                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
+                                    >
+                                        Düğün Drone
+                                    </Link>
+                                    <Link
+                                        href="/isletme-tanitim-filmi"
+                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
+                                    >
+                                        İşletme Tanıtım
+                                    </Link>
+                                    <Link
+                                        href="/etkinlik-drone-cekimi"
+                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
+                                    >
+                                        Etkinlik Drone
+                                    </Link>
                                 </div>
+
+                                {/* Bölgeler */}
                                 <div>
+                                    <h3 className="text-white font-semibold mb-4">Hizmet Bölgeleri</h3>
+                                    <div className="space-y-2 text-white/60 text-sm">
+                                        <p>Tekirdağ Merkez</p>
+                                        <p>Süleymanpaşa</p>
+                                        <p>Çorlu</p>
+                                        <p>Çerkezköy</p>
+                                        <p>Marmara Ereğlisi</p>
+                                        <p>Saray</p>
+                                    </div>
+                                </div>
+
+                                {/* Legal & Contact */}
+                                <div>
+                                    <h3 className="text-white font-semibold mb-4">İletişim</h3>
                                     {navLinks.contact.map((link) => (
                                         <Link
                                             key={link.label}
@@ -177,6 +213,17 @@ export default function Footer() {
                                             {link.label}
                                         </Link>
                                     ))}
+                                    <div className="mt-6">
+                                        {navLinks.legal.map((link) => (
+                                            <Link
+                                                key={link.label}
+                                                href={link.href}
+                                                className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-xs"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
@@ -200,7 +247,7 @@ export default function Footer() {
                                 <p>&copy; 2025 Kutal Drone. Tüm hakları saklıdır.</p>
                                 <p className="mt-1 flex gap-1">
                                     <Link href="#" className="hover:text-[#c5f536] transition-colors">
-                                        Flouix tarafından oluşturuldu
+                                        KutalSoft tarafından oluşturuldu
                                     </Link>
                                     <span>·</span>
                                     <Link href="https://nextjs.org" target="_blank" className="hover:text-[#c5f536] transition-colors">

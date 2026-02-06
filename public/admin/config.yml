@@ -5,11 +5,12 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-# Media Library izleyicisi
+# Media Library - Geliştirilmiş organizasyon
 media_library:
-  name: uploadcare
+  name: cloudinary
   config:
-    publicKey: YOUR_PUBLIC_KEY
+    cloud_name: kutal-drone
+    api_key: YOUR_API_KEY
 
 collections:
   # PROJECTS
@@ -100,3 +101,38 @@ collections:
               - {label: "Rol", name: "role", widget: "string"}
               - {label: "Fotoğraf", name: "photo", widget: "image"}
               - {label: "Bio", name: "bio", widget: "text"}
+
+  # RECENT FLIGHTS (Son Uçuşlar)
+  - name: "recentFlights"
+    label: "Son Uçuşlar"
+    label_singular: "Uçuş"
+    folder: "content/recent-flights"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Kategori", name: "category", widget: "select", options: ["Denetim", "Etkinlik", "Sinematografi", "Haritalama", "Çevre", "Emlak"]}
+      - {label: "Görsel", name: "image", widget: "image"}
+      - {label: "Açıklama", name: "description", widget: "text"}
+      - {label: "Tarih", name: "date", widget: "datetime"}
+      - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  # PRICING (Fiyatlandırma)
+  - name: "pricing"
+    label: "Fiyatlandırma"
+    label_singular: "Paket"
+    folder: "content/pricing"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Paket Adı", name: "name", widget: "string"}
+      - {label: "Fiyat", name: "price", widget: "string", hint: "Örn: ₺2,500"}
+      - {label: "Fiyat Açıklaması", name: "priceDescription", widget: "string", hint: "Örn: /proje"}
+      - {label: "Öne Çıkan", name: "highlighted", widget: "boolean", default: false}
+      - label: "Özellikler"
+        name: "features"
+        widget: "list"
+        field: {label: "Özellik", name: "Feature", widget: "string"}
+      - {label: "Buton Metni", name: "buttonText", widget: "string", default: "Teklif Al"}
+      - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
+      - {label: "Renk", name: "color", widget: "select", options: ["dark", "lime", "white"], default: "white"}

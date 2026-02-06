@@ -1,16 +1,18 @@
 import { Metadata } from "next";
 import { generateMetadata, COMPANY, generateLocalBusinessSchema } from "@/lib/metadata";
 import { MapPin, Phone, Users, Award } from "lucide-react";
+import ServicePageNav from "@/components/ServicePageNav";
 
 export const metadata: Metadata = generateMetadata({
-    title: "Hakkımızda",
-    description: `${COMPANY.name} - Tekirdağ Süleymanpaşa merkezli profesyonel drone hizmetleri. Ekibimiz, ekipmanlarımız ve deneyimimiz hakkında bilgi edinin.`,
-    keywords: ["kutal drone hakkında", "drone ekibi", "tekirdağ drone", "profesyonel drone pilot"],
+    title: "Hakkımızda - Tekirdağ'ın Drone Uzmanları",
+    description: `${COMPANY.name} - Tekirdağ Süleymanpaşa'da profesyonel drone hizmetleri. Lisanslı pilot, 4K/6K çekim, emlak-düğün-etkinlik uzmanlığı. Çorlu ve Çerkezköy'e hizmet.`,
+    keywords: ["kutal drone hakkında", "tekirdağ drone ekibi", "tekirdağ drone pilot", "süleymanpaşa drone", "profesyonel drone hizmeti"],
 });
 
 export default function AboutPage() {
     return (
         <>
+            <ServicePageNav />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -18,7 +20,7 @@ export default function AboutPage() {
                 }}
             />
 
-            <main className="min-h-screen bg-white">
+            <main className="min-h-screen bg-white pt-20">
                 {/* Hero */}
                 <section className="relative bg-aerialix-dark text-white py-32">
                     <div className="max-w-4xl mx-auto px-6 text-center">

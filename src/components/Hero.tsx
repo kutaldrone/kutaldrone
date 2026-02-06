@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Camera, Heart, Zap } from "lucide-react";
 
 export const Hero = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -77,13 +77,13 @@ export const Hero = () => {
 
     return (
         <section ref={containerRef} className="relative h-[400vh] bg-[#020305]">
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
+            <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#020305]">
                 {/* 1. Realistic Background */}
                 <motion.img
                     style={{ y: bgY, scale: bgScale }}
-                    src="/arkaplan.jpg"
+                    src="/arkaplan.avif"
                     alt="Background"
-                    className="absolute top-0 left-0 w-full min-h-screen h-auto object-cover object-top origin-top z-0"
+                    className="absolute top-0 left-0 w-full h-[400vh] object-contain object-top z-0"
                 />
 
                 {/* 1.5 Gradient Blend */}
@@ -148,6 +148,9 @@ export const Hero = () => {
                                 }}>
                                 Drone
                             </h1>
+                            <p className="text-white/70 text-xl md:text-2xl mt-4 tracking-wide font-sans max-w-2xl text-center">
+                                Sıradan görüntülerin ötesine geçin; dünyanızı gökyüzünden sinematik bir başyapıta dönüştürüyoruz.
+                            </p>
                         </div>
 
                         <div className="flex gap-4 mt-12 pointer-events-auto">
@@ -169,15 +172,14 @@ export const Hero = () => {
                     {/* SECTION 2: FEATURES GRID */}
                     <motion.div style={{ opacity: opacity2, scale: scale2 }} className="absolute w-full max-w-6xl px-6 grid grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
-                            { icon: "ShieldCheck", text: "Lisanslı & onaylı pilot" },
-                            { icon: "Umbrella", text: "Tam sigortalı uçuşlar" },
-                            { icon: "AlertTriangle", text: "Önce güvenlik operasyonları" },
-                            { icon: "Zap", text: "Hızlı teslimat" }
+                            { icon: ShieldCheck, text: "Lisanslı & onaylı pilot" },
+                            { icon: Camera, text: "Ultra Yüksek Çözünürlük" },
+                            { icon: Heart, text: "%100 Müşteri Memnuniyeti" },
+                            { icon: Zap, text: "Hızlı teslimat" }
                         ].map((item, i) => (
                             <div key={i} className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                                <div className="text-aerialix-green w-10 h-10 bg-aerialix-green/10 rounded-full flex items-center justify-center">
-                                    {/* Placeholder Icons for visual match */}
-                                    <div className="w-4 h-4 rounded-full bg-current" />
+                                <div className="text-[#c5f536] w-12 h-12 bg-[#c5f536]/10 rounded-full flex items-center justify-center">
+                                    <item.icon className="w-6 h-6" />
                                 </div>
                                 <p className="text-white font-sans font-medium">{item.text}</p>
                             </div>
@@ -186,14 +188,14 @@ export const Hero = () => {
 
                     {/* SECTION 3: FROM FLIGHT TO RESULTS */}
                     <motion.div style={{ opacity: opacity3 }} className="absolute text-center max-w-3xl px-6">
-                        <h2 className="font-heading font-bold text-5xl md:text-7xl text-white mb-6">Uçuştan sonuca</h2>
-                        <p className="font-sans text-xl text-white/80">Profesyonel planlama, güvenli uçuş ve güvenilir teslimat — her projede.</p>
+                        <h2 className="font-heading font-bold text-5xl md:text-7xl text-white mb-6">Gökyüzündeki İmzanız</h2>
+                        <p className="font-sans text-xl text-white/80">Sizin vizyonunuz, bizim uzmanlığımızla buluşuyor.</p>
                     </motion.div>
 
                     {/* SECTION 4: CLEAR VIEW */}
                     <motion.div style={{ opacity: opacity4 }} className="absolute text-center max-w-3xl px-6">
-                        <h2 className="font-heading font-bold text-5xl md:text-7xl text-white mb-6">Yukarıdan net bir bakış</h2>
-                        <p className="font-sans text-xl text-white/80">Gerçek dünya ortamları ve projeleri için hassas hava görüntülemesi.</p>
+                        <h2 className="font-heading font-bold text-5xl md:text-7xl text-white mb-6">En İyi Fiyat Garantisi</h2>
+                        <p className="font-sans text-xl text-white/80">Profesyonel hava çekimlerinde, kaliteden ödün vermeden en rekabetçi fiyatları sunuyoruz.</p>
                     </motion.div>
 
                 </div>

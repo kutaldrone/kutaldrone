@@ -1,13 +1,11 @@
+"use client";
+
 import { Metadata } from "next";
 import Link from "next/link";
-import { generateMetadata } from "@/lib/metadata";
 import { ChevronDown } from "lucide-react";
+import ServicePageNav from "@/components/ServicePageNav";
 
-export const metadata: Metadata = generateMetadata({
-    title: "Sık Sorulan Sorular",
-    description: "Drone çekimleri, fiyatlandırma, hizmet bölgeleri ve teslimat süreleri hakkında merak edilenler.",
-    keywords: ["drone çekim fiyatları", "drone hizmetleri sss", "tekirdağ drone faq"],
-});
+// Note: metadata export doesn't work in client components
 
 export default function FAQPage() {
     const faqs = [
@@ -16,7 +14,7 @@ export default function FAQPage() {
             answer: "Tekirdağ Süleymanpaşa merkezli olmakla birlikte, Trakya'nın tamamına ve İstanbul'a hizmet veriyoruz. Diğer bölgeler için lütfen bizimle iletişime geçin.",
         },
         {
-            question: "Fiyatland ırma nasıl çalışıyor?",
+            question: "Fiyatlandırma nasıl çalışıyor?",
             answer: "Fiyatlandırma, projenizin kapsamına, süresine ve özel gereksinimlerine göre değişir. Her proje için özelleştirilmiş teklif hazırlıyoruz. Ücretsiz ön görüşme için bizi arayın.",
         },
         {
@@ -28,82 +26,83 @@ export default function FAQPage() {
             answer: "Son teknoloji DJI drone'lar ve profesyonel kamera ekipmanları kullanıyoruz. 4K ve 6K çözünürlükte çekim yapabiliyoruz.",
         },
         {
-            question: "Yasal izinler nasıl alınıyor?",
-            answer: "Gerekli tüm SHGM (Sivil Havacılık Genel Müdürlüğü) izinlerini biz alıyoruz. Pilotlarımız sertifikalıdır ve tüm yasal gerekliliklere uygun çalışıyoruz.",
-        },
-        {
             question: "Hava koşulları çekimi etkiler mi?",
-            answer: "Evet, güvenlik önceliğimizdir. Rüzgar, yağmur veya sis gibi olumsuz hava koşullarında çekim yapmıyoruz. Bu durumda çekim tarihi yeniden planlanır.",
+            answer: "Evet, güvenlik ve görüntü kalitesi için uygun hava koşullarında uçuş yapıyoruz. Olumsuz hava durumunda çekimi yeniden planlıyoruz.",
         },
         {
-            question: "Ham görüntüleri de teslim ediyor musunuz?",
-            answer: "Evet, talep üzerine tüm ham görüntüleri de teslim ediyoruz. Paket fiyatlarımıza dahildir.",
+            question: "İzin belgesi gerekli mi?",
+            answer: "Bazı bölgelerde uçuş izni gerekebilir. Gerekli tüm izin işlemlerini sizin adınıza hallederiz.",
         },
         {
             question: "Revizyon hakkım var mı?",
-            answer: "Evet, edit sürecinde 2 revizyon hakkınız vardır. Ek revizyonlar için ayrı ücretlendirme yapılır.",
+            answer: "Evet! Standart ve Premium paketlerimizde sınırsız revizyon hakkı bulunmaktadır. Temel pakette 2 revizyon hakkı vardır.",
         },
         {
-            question: "Gece çekimi yapıyor musunuz?",
-            answer: "Evet, özel izinlerle gece çekimi yapıyoruz. Gece çekimleri için özel ekipman ve planlama gerektiğinden ek ücret uygulanır.",
-        },
-        {
-            question: "Canlı yayın hizmeti veriyor musunuz?",
-            answer: "Evet, etkinlikler ve özel organizasyonlar için havadan canlı yayın hizmeti sunuyoruz.",
+            question: "Ödeme nasıl yapılır?",
+            answer: "Projenin %50'si peşin, kalan %50'si teslimat öncesi ödenir. Havale/EFT veya kredi kartı ile ödeme kabul ediyoruz.",
         },
     ];
 
     return (
-        <main className="min-h-screen bg-white">
-            {/* Hero */}
-            <section className="relative bg-aerialix-dark text-white py-32">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <h1 className="font-heading font-bold text-5xl md:text-6xl mb-6">
-                        Sık Sorulan Sorular
-                    </h1>
-                    <p className="text-xl text-white/80">
-                        Merak ettiklerinizin cevapları burada
-                    </p>
-                </div>
-            </section>
-
-            {/* FAQs */}
-            <section className="py-20">
-                <div className="max-w-3xl mx-auto px-6">
-                    <div className="space-y-4">
-                        {faqs.map((faq, index) => (
-                            <details
-                                key={index}
-                                className="group bg-zinc-50 rounded-xl overflow-hidden"
-                            >
-                                <summary className="flex justify-between items-center cursor-pointer p-6 font-bold text-lg hover:bg-zinc-100 transition-colors">
-                                    {faq.question}
-                                    <ChevronDown className="w-5 h-5 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" />
-                                </summary>
-                                <div className="px-6 pb-6 text-zinc-600">
-                                    {faq.answer}
-                                </div>
-                            </details>
-                        ))}
+        <>
+            <ServicePageNav />
+            <main className="min-h-screen bg-white pt-20">
+                {/* Hero */}
+                <section className="bg-gradient-to-br from-aerialix-dark to-zinc-800 text-white py-24">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        <h1 className="font-heading font-bold text-5xl md:text-6xl mb-6">
+                            Sık Sorulan Sorular
+                        </h1>
+                        <p className="text-xl text-white/80">
+                            Merak ettiklerinizin yanıtları burada. Sorunuz yoksa{" "}
+                            <Link href="/#contact" className="underline hover:text-[#c5f536]">
+                                bize ulaşın
+                            </Link>
+                            .
+                        </p>
                     </div>
+                </section>
 
-                    {/* CTA */}
-                    <div className="mt-12 text-center bg-aerialix-dark text-white rounded-2xl p-8">
-                        <h3 className="font-heading font-bold text-2xl mb-4">
-                            Sorunuz hala cevapsız kaldı mı?
-                        </h3>
-                        <p className="mb-6 text-white/80">
-                            Bize ulaşın, size yardımcı olmaktan mutluluk duyarız.
+                {/* FAQs */}
+                <section className="py-20">
+                    <div className="max-w-3xl mx-auto px-6">
+                        <div className="space-y-4">
+                            {faqs.map((faq, index) => (
+                                <details
+                                    key={index}
+                                    className="group bg-zinc-50 rounded-xl overflow-hidden"
+                                >
+                                    <summary className="flex justify-between items-center cursor-pointer p-6 font-bold text-lg hover:bg-zinc-100 transition-colors">
+                                        {faq.question}
+                                        <ChevronDown className="w-5 h-5 text-zinc-400 group-open:rotate-180 transition-transform" />
+                                    </summary>
+                                    <div className="px-6 pb-6 text-zinc-600">
+                                        {faq.answer}
+                                    </div>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA */}
+                <section className="py-20 bg-zinc-50">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        <h2 className="font-heading font-bold text-4xl text-aerialix-dark mb-4">
+                            Sorunuzun Cevabını Bulamadınız mı?
+                        </h2>
+                        <p className="text-xl text-zinc-600 mb-8">
+                            Bizimle iletişime geçin, size yardımcı olmaktan mutluluk duyarız!
                         </p>
                         <Link
                             href="/#contact"
-                            className="inline-block bg-white text-aerialix-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
+                            className="inline-block bg-aerialix-dark text-white px-12 py-5 rounded-xl font-bold text-lg hover:bg-[#c5f536] hover:text-aerialix-dark transition-all"
                         >
-                            İletişime Geç
+                            İletişime Geçin
                         </Link>
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </>
     );
 }

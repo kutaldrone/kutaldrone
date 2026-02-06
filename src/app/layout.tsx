@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { generateMetadata, COMPANY } from "@/lib/metadata";
 import Script from "next/script";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -24,9 +25,23 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = generateMetadata({
-    title: "Profesyonel Drone Çekim ve Haritalama Hizmetleri",
-    description: `${COMPANY.name} - Tekirdağ Süleymanpaşa merkezli profesyonel drone çekim, haritalama ve tanıtım filmi hizmetleri. 4K/6K çözünürlük, sinematik kalite.`,
-    keywords: ["drone çekim", "hava çekimi", "tekirdağ drone", "profesyonel drone pilot", "drone haritalama", "kutal drone"],
+    title: "Tekirdağ Drone Çekimi - Profesyonel Hava Fotoğrafçılığı",
+    description: `Tekirdağ, Süleymanpaşa, Çorlu ve Çerkezköy'de profesyonel drone çekimi. Emlak fotoğrafçılığı, düğün ve etkinlik hava çekimi. ✓ 4K/6K video ✓ Hızlı teslimat ✓ Uygun fiyat. ${COMPANY.phone}`,
+    keywords: [
+        "tekirdağ drone çekimi",
+        "tekirdağ hava fotoğrafçılığı",
+        "süleymanpaşa drone",
+        "çorlu drone çekimi",
+        "çerkezköy drone",
+        "tekirdağ emlak fotoğrafçısı",
+        "tekirdağ düğün drone",
+        "tekirdağ drone kiralama",
+        "hava fotoğrafı tekirdağ",
+        "drone videografi tekirdağ",
+        "profesyonel drone pilot tekirdağ",
+        "tekirdağ etkinlik drone",
+        "sinematik drone çekim",
+    ],
 });
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -40,6 +55,7 @@ export default function RootLayout({
         <html lang="tr">
             <head>
                 <link rel="manifest" href="/manifest.json" />
+                <meta name="google-site-verification" content="YdXAS-VWZpmO_qbglgoTBJzxLi6yoHPBV14P2HMDjuU" />
                 <link rel="icon" href="/logo.png" />
                 {GA_MEASUREMENT_ID && (
                     <>
@@ -59,7 +75,9 @@ export default function RootLayout({
                 )}
             </head>
             <body className={`${inter.variable} ${sora.variable} ${orbitron.variable} antialiased`}>
-                <SmoothScroll>{children}</SmoothScroll>
+                <SmoothScroll>
+                    <PageTransition>{children}</PageTransition>
+                </SmoothScroll>
             </body>
         </html>
     );
