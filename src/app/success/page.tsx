@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Success() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-white">
@@ -13,12 +15,12 @@ export default function Success() {
                 <p className="font-sans text-lg text-zinc-600 mb-8">
                     Teşekkürler! En kısa sürede size geri dönüş yapacağız.
                 </p>
-                <a
+                <Link
                     href="/"
                     className="inline-block bg-aerialix-dark text-white px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
                 >
                     Ana Sayfaya Dön
-                </a>
+                </Link>
             </div>
         </div>
     );
