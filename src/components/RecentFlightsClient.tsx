@@ -35,9 +35,28 @@ const ProjectCard = ({ project }: { project: RecentFlight }) => {
 };
 
 export default function RecentFlightsClient({ projects }: { projects: RecentFlight[] }) {
-    // ... refs and state ...
+    const targetRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [scrollRange, setScrollRange] = useState(0);
 
-    // ... useEffect ...
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
+
+    useEffect(() => {
+        const updateScrollRange = () => {
+            if (scrollRef.current) {
+                const totalWidth = scrollRef.current.scrollWidth;
+                const myscreen = window.innerWidth;
+                // Sağa doğru akarken, son kartın sağ kenarı ekranın sağına geldiğinde dursun
+                setScrollRange(totalWidth - myscreen + 100); // 100px padding
+            }
+        };
+
+        updateScrollRange();
+        window.addEventListener("resize", updateScrollRange);
+        return () => window.removeEventListener("resize", updateScrollRange);
+    }, [projects]);
 
     const x = useTransform(scrollYProgress, [0, 1], ["0px", `-${scrollRange}px`]);
 
