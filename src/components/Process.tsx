@@ -23,7 +23,7 @@ const STEPS = [
 
 export default function Process() {
     return (
-        <section className="bg-aerialix-dark text-white py-32 relative overflow-hidden">
+        <section className="bg-aerialix-dark text-white py-16 md:py-32 relative overflow-hidden">
             {/* Background Accent */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c5f536] opacity-5 blur-[150px] rounded-full pointer-events-none" />
 
