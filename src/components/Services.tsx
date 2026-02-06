@@ -13,7 +13,7 @@ const ServiceCard = ({ title, description, image, className }: { title: string, 
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
             </div>
 
             {/* Content Overlay */}
@@ -25,8 +25,8 @@ const ServiceCard = ({ title, description, image, className }: { title: string, 
                 </h3>
 
                 {/* Hidden Content Reveal */}
-                <div className="overflow-hidden max-h-0 group-hover:max-h-32 transition-all duration-500 ease-in-out w-full">
-                    <p className="font-sans text-lg text-white/90 pt-4 pb-8 max-w-[80%]">
+                <div className="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-500 ease-in-out w-full">
+                    <p className="font-sans text-lg text-white/95 pt-4 pb-8 max-w-[90%] leading-relaxed">
                         {description}
                     </p>
                 </div>
@@ -42,7 +42,7 @@ const ServiceCard = ({ title, description, image, className }: { title: string, 
 
 export default function Services() {
     return (
-        <section className="bg-white py-32 px-4 md:px-8">
+        <section id="services" className="bg-white py-32 px-4 md:px-8 scroll-mt-20">
             <div className="max-w-[100rem] mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
@@ -50,7 +50,7 @@ export default function Services() {
                         Hava Hizmetleri
                     </h2>
                     <p className="font-sans text-xl text-zinc-500 max-w-sm">
-                        Geniş proje ihtiyaçlarına özel profesyonel drone çözümleri.
+                        Profesyonel drone çekimlerinden 3D haritalamaya, her proje için özel çözümler sunuyoruz.
                     </p>
                 </div>
 
@@ -62,13 +62,13 @@ export default function Services() {
                         {/* Row 1 */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                             <ServiceCard
-                                title="Hava fotoğrafçılığı"
-                                description="Pazarlama, emlak ve belgeleme için yüksek çözünürlüklü görüntüler."
+                                title="Hava Fotoğrafçılığı"
+                                description="Emlak, turizm ve pazarlama için yüksek çözünürlüklü hava fotoğrafları. Profesyonel ekipman ile 4K kalitesinde çekimler."
                                 image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37274d6e234b5f5a2f_Services%202.avif"
                             />
                             <ServiceCard
-                                title="Hava videografisi"
-                                description="Film, TV ve tanıtım içerikleri için sinematik 4K/6K video çekimi."
+                                title="Hava Videografisi"
+                                description="Reklam, tanıtım ve etkinlikler için sinematik 4K/6K drone videoları. Smooth gimbal hareketleri ve profesyonel renk derecelendirme."
                                 image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37e985fc6b9a71b797_Services%201.avif"
                             />
                         </div>
@@ -83,13 +83,13 @@ export default function Services() {
                         {/* Row 2 */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <ServiceCard
-                                title="Teftiş & haritalama"
-                                description="Pahalı ekipmanlara gerek kalmadan güvenli ve verimli hava denetimleri."
+                                title="Teftiş & Denetim"
+                                description="Bina, baca, güneş paneli ve altyapı denetimi için güvenli hava incelemesi. Erişilmesi zor alanlarda maliyet etkin çözüm."
                                 image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37a44a663bba076d68_Services%203.avif"
                             />
                             <ServiceCard
-                                title="Haritalama & belgeleme"
-                                description="Planlama, izleme ve 3D modelleme için hassas hava verileri."
+                                title="Haritalama & 3D Modelleme"
+                                description="İnşaat, tarım ve planlama için ortofoto haritalar ve hassas 3D modeller. Arazi ölçümü ve hacim hesaplamaları."
                                 image="https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c3734e413ca727e1fec_Services%204.avif"
                             />
                         </div>

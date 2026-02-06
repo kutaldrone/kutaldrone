@@ -8,6 +8,7 @@ import Testimonials from "../components/Testimonials"; // Replaces Industries
 import RecentFlights from "../components/RecentFlights"; // Replaces Projects
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function Home() {
     return (
@@ -22,6 +23,7 @@ export default function Home() {
             <RecentFlights />
             <Contact />
             <Footer />
+            <WhatsAppButton />
         </main>
     );
 }

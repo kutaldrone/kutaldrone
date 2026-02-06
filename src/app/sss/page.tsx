@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { generateMetadata } from "@/lib/metadata";
 import { ChevronDown } from "lucide-react";
 
@@ -94,12 +95,12 @@ export default function FAQPage() {
                         <p className="mb-6 text-white/80">
                             Bize ulaşın, size yardımcı olmaktan mutluluk duyarız.
                         </p>
-                        <a
+                        <Link
                             href="/#contact"
                             className="inline-block bg-white text-aerialix-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform"
                         >
                             İletişime Geç
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>
