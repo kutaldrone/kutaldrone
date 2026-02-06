@@ -39,7 +39,6 @@ export default function Contact() {
 
                             <div className="flex items-center gap-4 mt-12 pt-12 border-t border-white/10">
                                 <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-800">
-                                    {/* Placeholder for pilot image - using logo or generic avatar if unavailable */}
                                     <img src="/logo.png" alt="Pilot" className="w-full h-full object-contain p-2 bg-white" />
                                 </div>
                                 <div>
@@ -52,13 +51,30 @@ export default function Contact() {
 
                     {/* Right Column: Form */}
                     <div className="lg:col-span-7">
+                        {/* Hidden form for Netlify detection */}
+                        <form name="contact" netlify="true" netlify-honeypot="bot-field" hidden>
+                            <input type="text" name="name" />
+                            <input type="email" name="email" />
+                            <select name="service-type">
+                                <option value="Hava Fotoğrafçılığı">Hava Fotoğrafçılığı</option>
+                            </select>
+                            <input type="text" name="timeline" />
+                            <textarea name="project-details"></textarea>
+                        </form>
+
+                        {/* Visible form */}
                         <form
                             name="contact"
                             method="POST"
-                            data-netlify="true"
+                            action="/success"
                             className="space-y-8"
                         >
                             <input type="hidden" name="form-name" value="contact" />
+
+                            {/* Honeypot */}
+                            <div style={{ display: 'none' }}>
+                                <input name="bot-field" />
+                            </div>
 
                             <div className="space-y-2">
                                 <label htmlFor="name" className="block text-sm font-medium text-zinc-900">İsim</label>
@@ -92,7 +108,7 @@ export default function Contact() {
                                         name="service-type"
                                         className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all appearance-none cursor-pointer"
                                     >
-                                        <option value="" disabled selected>Birini seçin...</option>
+                                        <option value="" disabled>Birini seçin...</option>
                                         <option value="Hava Fotoğrafçılığı">Hava Fotoğrafçılığı</option>
                                         <option value="Video Prodüksiyon">Video Prodüksiyon</option>
                                         <option value="Haritalama & Ölçüm">Haritalama & Ölçüm</option>
