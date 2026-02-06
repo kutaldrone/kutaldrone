@@ -1,7 +1,8 @@
 ---
-title: "Hava Fotoğrafçılığı"
-description: "Emlak, turizm ve pazarlama için yüksek çözünürlüklü hava fotoğrafları. Profesyonel ekipman ile 4K kalitesinde çekimler."
-image: "https://cdn.prod.website-files.com/69551abcfe49c7eee2847bcb/695e0c37274d6e234b5f5a2f_Services%202.avif"
+title: Hava Fotoğrafçılığı
+description: Emlak, turizm ve pazarlama için yüksek çözünürlüklü hava
+  fotoğrafları. Profesyonel ekipman ile 4K kalitesinde çekimler.
+image: /images/uploads/tekirdagda-10-bin-kisilik-dev-iftar-sofrasi-havadan-goruntulendi_2a253d1.jpg
 order: 1
 active: true
 ---
