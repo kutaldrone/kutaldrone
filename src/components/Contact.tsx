@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 export default function Contact() {
     return (
@@ -49,110 +48,54 @@ export default function Contact() {
                         </motion.div>
                     </div>
 
-                    {/* Right Column: Form */}
+                    {/* Right Column: Contact Info */}
                     <div className="lg:col-span-7">
-                        {/* Hidden form for Netlify detection */}
-                        <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-                            <input type="text" name="name" />
-                            <input type="email" name="email" />
-                            <select name="service-type">
-                                <option value="Hava Fotoğrafçılığı">Hava Fotoğrafçılığı</option>
-                            </select>
-                            <input type="text" name="timeline" />
-                            <textarea name="project-details"></textarea>
-                        </form>
-
-                        {/* Visible form */}
-                        <form
-                            name="contact"
-                            method="POST"
-                            action="/success"
-                            className="space-y-8"
-                        >
-                            <input type="hidden" name="form-name" value="contact" />
-
-                            {/* Honeypot */}
-                            <div style={{ display: 'none' }}>
-                                <input name="bot-field" />
+                        <div className="bg-zinc-50 rounded-3xl p-12 space-y-8">
+                            <div className="space-y-4">
+                                <h3 className="font-heading font-bold text-2xl text-aerialix-dark">
+                                    İletişim Bilgileri
+                                </h3>
+                                <p className="font-sans text-lg text-zinc-600">
+                                    Projeniz hakkında görüşmek için aşağıdaki iletişim yöntemlerini kullanabilirsiniz:
+                                </p>
                             </div>
 
-                            <div className="space-y-2">
-                                <label htmlFor="name" className="block text-sm font-medium text-zinc-900">İsim</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    required
-                                    placeholder="Kiminle konuştuğumu bileyim."
-                                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all"
-                                />
-                            </div>
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-aerialix-dark rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="font-heading font-semibold text-lg text-aerialix-dark">E-posta</p>
+                                        <a href="mailto:info@kutaldrone.com" className="text-zinc-600 hover:text-aerialix-dark transition-colors text-lg">
+                                            info@kutaldrone.com
+                                        </a>
+                                    </div>
+                                </div>
 
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="block text-sm font-medium text-zinc-900">E-posta</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    required
-                                    placeholder="Buradan yanıt vereceğim."
-                                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <label htmlFor="service-type" className="block text-sm font-medium text-zinc-900">Hizmet Türü</label>
-                                <div className="relative">
-                                    <select
-                                        id="service-type"
-                                        name="service-type"
-                                        className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all appearance-none cursor-pointer"
-                                    >
-                                        <option value="" disabled>Birini seçin...</option>
-                                        <option value="Hava Fotoğrafçılığı">Hava Fotoğrafçılığı</option>
-                                        <option value="Video Prodüksiyon">Video Prodüksiyon</option>
-                                        <option value="Haritalama & Ölçüm">Haritalama & Ölçüm</option>
-                                        <option value="Emlak Çekimi">Emlak Çekimi</option>
-                                        <option value="Denetim (Inspection)">Denetim (Inspection)</option>
-                                        <option value="Diğer">Diğer</option>
-                                    </select>
-                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-aerialix-dark rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="font-heading font-semibold text-lg text-aerialix-dark">Telefon</p>
+                                        <a href="tel:+905XXXXXXXXX" className="text-zinc-600 hover:text-aerialix-dark transition-colors text-lg">
+                                            +90 5XX XXX XX XX
+                                        </a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <label htmlFor="timeline" className="block text-sm font-medium text-zinc-900">Zaman Çizelgesi</label>
-                                <input
-                                    type="text"
-                                    id="timeline"
-                                    name="timeline"
-                                    placeholder="Buna ne zaman ihtiyacınız var?"
-                                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all"
-                                />
+                            <div className="pt-6 border-t border-zinc-200">
+                                <p className="text-sm text-zinc-500 italic">
+                                    💡 İletişim formu yakında eklenecek.
+                                </p>
                             </div>
-
-                            <div className="space-y-2">
-                                <label htmlFor="project-details" className="block text-sm font-medium text-zinc-900">Proje Detayları</label>
-                                <textarea
-                                    id="project-details"
-                                    name="project-details"
-                                    required
-                                    rows={4}
-                                    placeholder="Konum, hedefler veya bilmem gereken herhangi bir şey hakkında bilgi verin."
-                                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-aerialix-dark/20 focus:border-aerialix-dark transition-all resize-none"
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="bg-aerialix-dark text-white px-8 py-4 rounded-full font-bold hover:scale-105 hover:shadow-lg transition-all flex items-center gap-2 group w-full md:w-auto justify-center"
-                            >
-                                Teklif Gönder
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
