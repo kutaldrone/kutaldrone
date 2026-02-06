@@ -52,7 +52,7 @@ export default function Contact() {
                     {/* Right Column: Form */}
                     <div className="lg:col-span-7">
                         {/* Hidden form for Netlify detection */}
-                        <form name="contact" netlify="true" netlify-honeypot="bot-field" hidden>
+                        <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
                             <input type="text" name="name" />
                             <input type="email" name="email" />
                             <select name="service-type">
