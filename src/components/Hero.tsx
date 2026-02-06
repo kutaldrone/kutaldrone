@@ -76,7 +76,6 @@ export const Hero = () => {
     const textY = useTransform(smoothProgress, [0, 0.3], ["0%", "-200%"]);
 
     return (
-    return (
         <section ref={containerRef} className="relative h-[250vh] md:h-[400vh] bg-[#020305]">
             <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#020305]">
                 {/* 1. Realistic Background */}
