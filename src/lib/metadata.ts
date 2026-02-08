@@ -18,7 +18,7 @@ export const COMPANY = {
     url: "https://kutaldrone.com.tr",
     social: {
         instagram: "https://instagram.com/kutaldrone",
-        youtube: "https://youtube.com/@utaldrone",
+        youtube: "https://youtube.com/@kutaldrone",
         twitter: "https://twitter.com/kutaldrone",
     },
 };
@@ -74,6 +74,34 @@ export function generateMetadata({
             images: [absoluteOgImage],
             creator: "@kutaldrone",
         },
+        icons: {
+            icon: [
+                { url: "/favicon.ico", sizes: "any" },
+                { url: "/icon.png", type: "image/png" },
+            ],
+            apple: [
+                { url: "/apple-icon.png" },
+            ],
+        },
+    };
+}
+
+// Organization Schema (For Logo in Google Search)
+export function generateOrganizationSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: COMPANY.name,
+        url: COMPANY.url,
+        logo: `${COMPANY.url}/logo.png`,
+        contactPoint: {
+            "@type": "ContactPoint",
+            telephone: COMPANY.phoneFormatted,
+            contactType: "customer service",
+            areaServed: "TR",
+            availableLanguage: "Turkish"
+        },
+        sameAs: Object.values(COMPANY.social),
     };
 }
 

@@ -1,0 +1,35 @@
+name: Ghost Writer AI
+
+on:
+  schedule:
+    # Run at 09:00 on Monday and Thursday
+    - cron: '0 9 * * 1,4'
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  write-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate Blog Post
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/ghost-writer.js
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 AI Ghost Writer: New blog post generated"
+          branch: main
+          file_pattern: 'content/blog/*.md'

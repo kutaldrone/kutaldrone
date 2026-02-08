@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Sora, Orbitron } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import { generateMetadata, COMPANY } from "@/lib/metadata";
+import { generateMetadata, COMPANY, generateLocalBusinessSchema } from "@/lib/metadata";
 import Script from "next/script";
 import PageTransition from "@/components/PageTransition";
+import StickyCallButton from "@/components/StickyCallButton";
+import PWAInstallButton from "@/components/PWAInstallButton";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -51,12 +53,20 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const businessSchema = generateLocalBusinessSchema();
+
     return (
         <html lang="tr">
             <head>
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="google-site-verification" content="YdXAS-VWZpmO_qbglgoTBJzxLi6yoHPBV14P2HMDjuU" />
-                <link rel="icon" href="/logo.png" />
+
+                <Script
+                    id="org-schema"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+                />
+
                 {GA_MEASUREMENT_ID && (
                     <>
                         <Script
@@ -78,6 +88,8 @@ export default function RootLayout({
                 <SmoothScroll>
                     <PageTransition>{children}</PageTransition>
                 </SmoothScroll>
+                <StickyCallButton />
+                <PWAInstallButton />
             </body>
         </html>
     );

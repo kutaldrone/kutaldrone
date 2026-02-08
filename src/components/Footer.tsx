@@ -4,8 +4,8 @@ import { Reveal } from "./Reveal";
 const navLinks = {
     main: [
         { label: "Hakkımızda", href: "/hakkimizda" },
-        { label: "Hizmetler", href: "#services" },
-        { label: "Projeler", href: "#projects" },
+        { label: "Hizmetler", href: "/#services" },
+        { label: "Projeler", href: "/#projects" },
         { label: "SSS", href: "/sss" },
     ],
     legal: [
@@ -144,54 +144,79 @@ export default function Footer() {
                             </div>
 
                             {/* Links Grid */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                                 {/* Sayfalar */}
-                                <div>
-                                    <h3 className="text-white font-semibold mb-4">Sayfalar</h3>
-                                    {navLinks.main.map((link) => (
-                                        <Link
-                                            key={link.label}
-                                            href={link.href}
-                                            className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm font-medium"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
+                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
+                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Sayfalar</h3>
+                                    <details className="group md:hidden">
+                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
+                                            Sayfalar
+                                            <span className="transition-transform group-open:rotate-180">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                            </span>
+                                        </summary>
+                                        <div className="mt-4 space-y-2">
+                                            {navLinks.main.map((link) => (
+                                                <Link key={link.label} href={link.href} className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm font-medium">
+                                                    {link.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </details>
+                                    <div className="hidden md:block">
+                                        {navLinks.main.map((link) => (
+                                            <Link key={link.label} href={link.href} className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm font-medium">
+                                                {link.label}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 {/* Hizmetler */}
-                                <div>
-                                    <h3 className="text-white font-semibold mb-4">Hizmetler</h3>
-                                    <Link
-                                        href="/emlak-drone-cekimi"
-                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
-                                    >
-                                        Emlak Drone
-                                    </Link>
-                                    <Link
-                                        href="/dugun-drone-cekimi"
-                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
-                                    >
-                                        Düğün Drone
-                                    </Link>
-                                    <Link
-                                        href="/isletme-tanitim-filmi"
-                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
-                                    >
-                                        İşletme Tanıtım
-                                    </Link>
-                                    <Link
-                                        href="/etkinlik-drone-cekimi"
-                                        className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm"
-                                    >
-                                        Etkinlik Drone
-                                    </Link>
+                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
+                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Hizmetler</h3>
+                                    <details className="group md:hidden">
+                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
+                                            Hizmetler
+                                            <span className="transition-transform group-open:rotate-180">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                            </span>
+                                        </summary>
+                                        <div className="mt-4 space-y-2">
+                                            <Link href="/emlak-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Emlak Drone</Link>
+                                            <Link href="/dugun-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Düğün Drone</Link>
+                                            <Link href="/isletme-tanitim-filmi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">İşletme Tanıtım</Link>
+                                            <Link href="/etkinlik-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Etkinlik Drone</Link>
+                                        </div>
+                                    </details>
+                                    <div className="hidden md:block">
+                                        <Link href="/emlak-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Emlak Drone</Link>
+                                        <Link href="/dugun-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Düğün Drone</Link>
+                                        <Link href="/isletme-tanitim-filmi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">İşletme Tanıtım</Link>
+                                        <Link href="/etkinlik-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Etkinlik Drone</Link>
+                                    </div>
                                 </div>
 
                                 {/* Bölgeler */}
-                                <div>
-                                    <h3 className="text-white font-semibold mb-4">Hizmet Bölgeleri</h3>
-                                    <div className="space-y-2 text-white/60 text-sm">
+                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
+                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Hizmet Bölgeleri</h3>
+                                    <details className="group md:hidden">
+                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
+                                            Hizmet Bölgeleri
+                                            <span className="transition-transform group-open:rotate-180">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                            </span>
+                                        </summary>
+                                        <div className="mt-4 space-y-2 text-white/60 text-sm">
+                                            <p>Tekirdağ Merkez</p>
+                                            <p>Süleymanpaşa</p>
+                                            <p>Çorlu</p>
+                                            <p>Çerkezköy</p>
+                                            <p>Marmara Ereğlisi</p>
+                                            <p>Saray</p>
+                                        </div>
+                                    </details>
+                                    <div className="hidden md:block space-y-2 text-white/60 text-sm">
                                         <p>Tekirdağ Merkez</p>
                                         <p>Süleymanpaşa</p>
                                         <p>Çorlu</p>

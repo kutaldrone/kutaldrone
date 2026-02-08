@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: main
+publish_mode: editorial_workflow
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -143,3 +144,73 @@ collections:
       - {label: "Buton Metni", name: "buttonText", widget: "string", default: "Teklif Al"}
       - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
       - {label: "Renk", name: "color", widget: "select", options: ["dark", "lime", "white"], default: "white"}
+
+  # BLOG
+  - name: "blog"
+    label: "Blog Yazıları"
+    label_singular: "Yazı"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Öne Çıkan Görsel", name: "image", widget: "image"}
+      - {label: "Özet", name: "excerpt", widget: "text"}
+      - {label: "Yayın Tarihi", name: "date", widget: "datetime"}
+      - {label: "İçerik", name: "body", widget: "markdown"}
+      - {label: "SEO Başlık", name: "seoTitle", widget: "string", required: false}
+      - {label: "SEO Açıklama", name: "seoDescription", widget: "text", required: false}
+
+  # LOCATIONS (Hizmet Bölgeleri)
+  - name: "locations"
+    label: "Hizmet Bölgeleri"
+    label_singular: "Bölge"
+    folder: "content/locations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Bölge Adı", name: "title", widget: "string"}
+      - {label: "URL Yolu (Slug)", name: "slug", widget: "string", hint: "Örn: tekirdag-drone-cekimi"}
+      - {label: "Hero Görseli", name: "image", widget: "image"}
+      - {label: "Hero Başlık", name: "heroTitle", widget: "string", default: "Profesyonel Drone Çekimi"}
+      - {label: "Alt Başlık", name: "heroSubtitle", widget: "string"}
+      - {label: "Giriş Metni", name: "introText", widget: "markdown"}
+      - label: "Öne Çıkan Hizmetler"
+        name: "highlightedServices"
+        widget: "relation"
+        collection: "services"
+        search_fields: ["title"]
+        value_field: "title"
+        display_fields: ["title"]
+        multiple: true
+      - {label: "Harita Embed Kodu", name: "mapEmbed", widget: "text", required: false}
+      - {label: "SEO Başlık", name: "seoTitle", widget: "string"}
+      - {label: "SEO Açıklama", name: "seoDescription", widget: "text"}
+
+  # FAQ (Sıkça Sorulan Sorular)
+  - name: "faq"
+    label: "Sıkça Sorulan Sorular"
+    label_singular: "Soru"
+    folder: "content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Soru", name: "question", widget: "string"}
+      - {label: "Cevap", name: "answer", widget: "text"}
+      - {label: "Sıralama", name: "order", widget: "number", default: 0, value_type: "int"}
+
+  # SOCIAL MEDIA & CONTACT (Ayarlar -> Sosyal Medya)
+  - name: "social"
+    label: "Sosyal Medya & İletişim"
+    files:
+      - label: "Sosyal Medya Linkleri"
+        name: "socialMedia"
+        file: "content/settings/social.json"
+        fields:
+          - {label: "Instagram URL", name: "instagram", widget: "string", required: false}
+          - {label: "YouTube URL", name: "youtube", widget: "string", required: false}
+          - {label: "Facebook URL", name: "facebook", widget: "string", required: false}
+          - {label: "LinkedIn URL", name: "linkedin", widget: "string", required: false}
+          - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string", hint: "905xxxxxxxxx formatında"}
+          - {label: "E-posta", name: "email", widget: "string"}
+          - {label: "Adres", name: "address", widget: "text"}

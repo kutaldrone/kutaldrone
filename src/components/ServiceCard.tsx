@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 interface ServiceCardProps {
@@ -14,12 +15,15 @@ export default function ServiceCard({ title, description, image, className }: Se
         <div className={`group relative overflow-hidden rounded-[2rem] h-[600px] w-full cursor-pointer ${className}`}>
             {/* Background Image */}
             <div className="absolute inset-0">
-                <img
+                <Image
                     src={image}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority={false}
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 z-10" />
             </div>
 
             {/* Content Overlay */}

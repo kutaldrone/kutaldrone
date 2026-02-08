@@ -68,21 +68,22 @@ export default async function Services() {
                     <div className="w-full">
                         {/* Row 1 */}
                         {firstRow.length > 0 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 mb-4 md:mb-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide pr-12 md:pr-0">
                                 {firstRow.map((service, i) => (
-                                    <ServiceCard
-                                        key={i}
-                                        title={service.title}
-                                        description={service.description}
-                                        image={service.image}
-                                    />
+                                    <div key={i} className="min-w-[85vw] md:min-w-0 snap-center">
+                                        <ServiceCard
+                                            title={service.title}
+                                            description={service.description}
+                                            image={service.image}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         )}
 
-                        {/* Central Icon Bridge */}
+                        {/* Central Icon Bridge (Desktop Only) */}
                         {secondRow.length > 0 && (
-                            <div className="flex justify-center my-8">
+                            <div className="hidden md:flex justify-center my-8">
                                 <div className="w-16 h-16 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400">
                                     <Plus className="w-8 h-8" />
                                 </div>
@@ -91,14 +92,15 @@ export default async function Services() {
 
                         {/* Row 2 */}
                         {secondRow.length > 0 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide pr-12 md:pr-0">
                                 {secondRow.map((service, i) => (
-                                    <ServiceCard
-                                        key={i}
-                                        title={service.title}
-                                        description={service.description}
-                                        image={service.image}
-                                    />
+                                    <div key={i} className="min-w-[85vw] md:min-w-0 snap-center">
+                                        <ServiceCard
+                                            title={service.title}
+                                            description={service.description}
+                                            image={service.image}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         )}

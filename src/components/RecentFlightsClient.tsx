@@ -46,10 +46,15 @@ export default function RecentFlightsClient({ projects }: { projects: RecentFlig
     useEffect(() => {
         const updateScrollRange = () => {
             if (scrollRef.current) {
-                const totalWidth = scrollRef.current.scrollWidth;
-                const myscreen = window.innerWidth;
-                // Sağa doğru akarken, son kartın sağ kenarı ekranın sağına geldiğinde dursun
-                setScrollRange(totalWidth - myscreen + 100); // 100px padding
+                const isMobile = window.innerWidth < 768;
+
+                if (isMobile) {
+                    setScrollRange(0); // Disable scroll animation on mobile
+                } else {
+                    const totalWidth = scrollRef.current.scrollWidth;
+                    const myscreen = window.innerWidth;
+                    setScrollRange(totalWidth - myscreen + 100);
+                }
             }
         };
 
@@ -61,27 +66,33 @@ export default function RecentFlightsClient({ projects }: { projects: RecentFlig
     const x = useTransform(scrollYProgress, [0, 1], ["0px", `-${scrollRange}px`]);
 
     return (
-        <section id="projects" ref={targetRef} className="relative h-[200vh] bg-neutral-50">
-            <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <section id="projects" ref={targetRef} className="relative h-auto md:h-[200vh] bg-neutral-50">
+            <div className="relative md:sticky md:top-0 flex flex-col md:flex-row h-auto md:h-screen items-start md:items-center overflow-hidden">
 
                 {/* Header */}
-                <div className="absolute top-24 left-4 md:left-24 z-10 max-w-md pointer-events-none pr-4">
+                <div className="relative md:absolute top-auto md:top-24 left-auto md:left-24 z-10 max-w-md pointer-events-auto md:pointer-events-none px-6 pt-12 md:pt-0 mb-8 md:mb-0">
                     <h2 className="font-heading font-bold text-4xl md:text-6xl text-aerialix-dark mb-4 md:mb-6">Son uçuşlar</h2>
                     <p className="font-sans text-base md:text-xl text-zinc-500 bg-white/50 backdrop-blur-sm p-4 rounded-xl">
                         Farklı ortam ve sektörlerde gerçekleştirilen güncel hava projelerinden bir seçki.
                     </p>
                 </div>
 
-                <motion.div ref={scrollRef} style={{ x }} className="flex gap-4 md:gap-8 pl-4 md:pl-24 pr-24 items-center">
-                    {/* Spacer for the header text */}
-                    <div className="w-[85vw] md:w-[400px] flex-shrink-0" />
+                <motion.div
+                    ref={scrollRef}
+                    style={{ x }}
+                    className="flex gap-4 md:gap-8 pl-6 md:pl-24 pr-6 md:pr-24 items-center w-full md:w-auto overflow-x-auto md:overflow-visible pb-12 md:pb-0 snap-x snap-mandatory"
+                >
+                    {/* Spacer for the header text (Desktop only) */}
+                    <div className="hidden md:block w-[85vw] md:w-[400px] flex-shrink-0" />
 
                     {projects.map((project, i) => (
-                        <ProjectCard key={i} project={project} />
+                        <div key={i} className="snap-center">
+                            <ProjectCard project={project} />
+                        </div>
                     ))}
 
                     {/* End Spacer */}
-                    <div className="w-24 flex-shrink-0" />
+                    <div className="w-6 md:w-24 flex-shrink-0" />
                 </motion.div>
             </div>
         </section>

@@ -168,3 +168,65 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
     background: #7a9aa5;
 }
+
+/* iOS Input Zoom Fix */
+@media screen and (max-width: 768px) {
+
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* LEAFLET MAP CUSTOM STYLES */
+.leaflet-popup-content-wrapper {
+    background-color: #0a0c10 !important;
+    color: #fff !important;
+    border: 1px solid rgba(197, 245, 54, 0.3);
+    border-radius: 12px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-popup-tip {
+    background-color: #0a0c10 !important;
+    border: 1px solid rgba(197, 245, 54, 0.3);
+    border-top: none;
+    border-left: none;
+}
+
+.leaflet-popup-close-button {
+    color: #fff !important;
+    font-size: 18px !important;
+    right: 8px !important;
+    top: 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+    color: #c5f536 !important;
+}
+
+/* Hide Leaflet attribution on mobile if too crowded, or style it */
+.leaflet-control-attribution {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #aaa !important;
+    font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+    color: #ccc !important;
+}
+
+/* Custom DivIcon Animations */
+@keyframes ping {
+
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}

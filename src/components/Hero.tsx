@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { ArrowRight, ShieldCheck, Camera, Heart, Zap } from "lucide-react";
 
@@ -76,15 +77,19 @@ export const Hero = () => {
     const textY = useTransform(smoothProgress, [0, 0.3], ["0%", "-200%"]);
 
     return (
-        <section ref={containerRef} className="relative h-[250vh] md:h-[400vh] bg-[#020305]">
+        <section ref={containerRef} className="relative h-[175vh] md:h-[400vh] bg-[#020305]">
             <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#020305]">
                 {/* 1. Realistic Background */}
-                <motion.img
-                    style={{ y: bgY, scale: bgScale }}
-                    src="/arkaplan.avif"
-                    alt="Background"
-                    className="absolute top-0 left-0 w-full h-[100vh] md:h-[400vh] object-cover md:object-contain object-top z-0"
-                />
+                <motion.div style={{ y: bgY, scale: bgScale }} className="absolute top-0 left-0 w-full h-[100vh] md:h-[400vh] z-0">
+                    <Image
+                        src="/arkaplan.avif"
+                        alt="Background"
+                        fill
+                        className="object-cover md:object-contain object-top"
+                        priority
+                        quality={90}
+                    />
+                </motion.div>
 
                 {/* 1.5 Gradient Blend */}
                 <motion.div
@@ -154,13 +159,13 @@ export const Hero = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-12 pointer-events-auto w-full sm:w-auto px-6 sm:px-0">
-                            <Link href="#contact" className="w-full sm:w-auto">
+                            <Link href="/#contact" className="w-full sm:w-auto">
                                 <button className="w-full sm:w-auto bg-aerialix-dark text-[#c9fd74] px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2 border border-[#c9fd74]/20">
                                     Teklif Al
                                     <span className="bg-[#c9fd74] text-aerialix-dark p-1 rounded-full"><ArrowRight className="w-3 h-3" /></span>
                                 </button>
                             </Link>
-                            <Link href="#projects" className="w-full sm:w-auto">
+                            <Link href="/#projects" className="w-full sm:w-auto">
                                 <button className="w-full sm:w-auto bg-white text-aerialix-dark px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
                                     İşleri Gör
                                     <span className="bg-aerialix-dark/10 p-1 rounded-full"><ArrowRight className="w-3 h-3" /></span>
@@ -199,6 +204,23 @@ export const Hero = () => {
                     </motion.div>
 
                 </div>
+
+                {/* SCROLL INDICATOR (Visual Cue) */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, y: [0, 10, 0] }}
+                    transition={{ delay: 2, duration: 2, repeat: Infinity }}
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none"
+                    style={{ opacity: opacity1 }} // Only show in Phase 1
+                >
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-white/50 text-xs tracking-widest uppercase font-sans">Kaydır</span>
+                        <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </motion.div>
+
             </div>
         </section>
     );

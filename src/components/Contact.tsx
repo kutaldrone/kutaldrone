@@ -157,6 +157,8 @@ export default function Contact() {
                                                 id="phone"
                                                 name="phone"
                                                 required
+                                                inputMode="numeric"
+                                                pattern="[0-9]*"
                                                 value={formData.phone}
                                                 onChange={handleChange}
                                                 className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-aerialix-dark focus:ring-2 focus:ring-aerialix-dark/20 outline-none transition-all"
@@ -174,6 +176,7 @@ export default function Contact() {
                                             id="email"
                                             name="email"
                                             required
+                                            inputMode="email"
                                             value={formData.email}
                                             onChange={handleChange}
                                             className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-aerialix-dark focus:ring-2 focus:ring-aerialix-dark/20 outline-none transition-all"

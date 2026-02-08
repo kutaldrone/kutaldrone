@@ -105,7 +105,7 @@ export default function Testimonials() {
                 </div>
 
                 {/* Right Column: Logo Grid */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="md:grid grid-cols-2 gap-4 hidden">
                     {/* Column 1 */}
                     <div className="flex flex-col gap-4">
                         {LOGOS.slice(0, 5).map((logo, i) => (
@@ -122,6 +122,15 @@ export default function Testimonials() {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                {/* Mobile Logo Scroll (Horizontal) */}
+                <div className="md:hidden flex overflow-x-auto gap-4 py-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+                    {LOGOS.map((logo, i) => (
+                        <div key={i} className="bg-white/5 rounded-xl p-6 flex items-center justify-center min-w-[140px] aspect-[4/3] snap-center">
+                            <img src={logo} alt="Client Logo" className="opacity-60 grayscale max-w-[80%]" />
+                        </div>
+                    ))}
                 </div>
 
             </div>

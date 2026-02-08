@@ -49,8 +49,8 @@ export default function Process() {
                     </motion.h2>
                 </div>
 
-                {/* Steps Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Steps Grid - Mobile Scroll / Desktop Grid */}
+                <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide pr-12 md:pr-0">
                     {STEPS.map((step, index) => (
                         <motion.div
                             key={index}
@@ -58,7 +58,7 @@ export default function Process() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="group relative"
+                            className="group relative min-w-[85vw] md:min-w-0 snap-center"
                         >
                             {/* Connector Line (Desktop only) */}
                             {index !== STEPS.length - 1 && (
