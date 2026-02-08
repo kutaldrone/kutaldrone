@@ -5,6 +5,7 @@ const navLinks = {
     main: [
         { label: "Hakkımızda", href: "/hakkimizda" },
         { label: "Hizmetler", href: "/#services" },
+        { label: "Blog", href: "/blog" },
         { label: "Projeler", href: "/#projects" },
         { label: "SSS", href: "/sss" },
     ],
@@ -77,210 +78,160 @@ const socialLinks = [
 
 export default function Footer() {
     return (
-        <footer className="bg-[#122122] pt-20 pb-8" id="contact">
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="grid lg:grid-cols-3 gap-12 lg:gap-8">
-                    {/* Meet the Pilot */}
-                    <div className="lg:col-span-1">
+        <footer className="bg-[#0a0c10] pt-24 pb-12 border-t border-white/5" id="contact">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+                    {/* 1. Meet the Pilot (Left - 4 Cols) */}
+                    <div className="lg:col-span-4">
                         <Reveal delay={0.2} width="100%">
-                            <h2 className="font-sora font-bold text-3xl md:text-4xl text-white mb-6">
-                                Drone Operatörüyle Tanışın
-                            </h2>
-                            <p className="text-white/70 mb-4 leading-relaxed">
-                                Merhaba, ben Umut. Ticari ve özel müşteriler için profesyonel hava hizmetleri sunan lisanslı bir drone operatörüyüm.
-                            </p>
-                            <p className="text-white/70 mb-4 leading-relaxed">
-                                Güvenilir sonuçlar ve sorunsuz proje teslimi sağlamak için uçuş planlamasından çekime kadar her aşamada her müşteriyle doğrudan çalışırım.
-                            </p>
-                            <p className="text-white/70 mb-6">Projenizi konuşalım.</p>
-                            <Link
-                                href="#contact"
-                                className="inline-flex items-center gap-2 bg-[#c5f536] text-[#122122] px-6 py-3 rounded-full font-medium hover:shadow-[0_0_20px_rgba(197,245,54,0.3)] hover:scale-105 transition-all duration-300"
-                            >
-                                Teklif Al
-                                <span className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                                    <svg
-                                        className="w-3 h-3 text-[#122122]"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 5l7 7-7 7"
-                                        />
-                                    </svg>
-                                </span>
+                            <Link href="/" className="inline-block mb-8">
+                                <img src="/logo.png" alt="Kutal Drone" className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity" />
                             </Link>
+
+                            <h2 className="font-heading font-bold text-3xl text-white mb-6 leading-tight">
+                                Projenizi Gökyüzüne<br /> <span className="text-[#c5f536]">Taşıyalım</span>
+                            </h2>
+                            <p className="text-white/60 mb-8 leading-relaxed text-sm">
+                                Merhaba, ben Umut. Şantiyeden düğüne, emlak çekiminden tanıtım filmine kadar her projede lisanslı pilotluğum ve sinematik bakış açımla yanınızdayım.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Link
+                                    href="https://wa.me/905529501367"
+                                    target="_blank"
+                                    className="inline-flex items-center justify-center gap-2 bg-[#c5f536] text-[#0a0c10] px-6 py-3.5 rounded-xl font-bold hover:bg-white transition-all hover:scale-105 active:scale-95"
+                                >
+                                    WhatsApp'tan Yaz
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.0117 2.0166C6.5057 2.0166 2.02344 6.4988 2.02344 12.0049C2.02344 13.7656 2.48438 15.4853 3.37695 17.0312L2.01172 22.0166L7.14355 20.6709C8.63672 21.4883 10.3125 21.9932 12.0117 21.9932C17.5176 21.9932 22 17.5109 22 12.0049C22 6.4988 17.5176 2.0166 12.0117 2.0166ZM12.0117 20.3174C10.5186 20.3174 9.08301 19.9209 7.82227 19.1602L7.52441 18.9834L4.47852 19.7822L5.29199 16.8096L5.09375 16.4941C4.24609 15.1504 3.78418 13.6016 3.78418 12.0049C3.78418 7.46973 7.47656 3.77734 12.0117 3.77734C16.5469 3.77734 20.2393 7.46973 20.2393 12.0049C20.2393 16.5401 16.5469 20.3174 12.0117 20.3174ZM16.4883 14.4453C16.2441 14.3223 15.0449 13.7324 14.8223 13.6514C14.6006 13.5693 14.4375 13.5283 14.2754 13.7725C14.1133 14.0166 13.6465 14.5645 13.5049 14.7275C13.3633 14.8906 13.2217 14.9092 12.9775 14.7871C12.7334 14.665 11.9482 14.4063 11.0166 13.5762C10.2861 12.9258 9.79199 12.1221 9.64941 11.8779C9.50781 11.6338 9.63477 11.503 9.75684 11.3818C9.86621 11.2725 10.001 11.0977 10.123 10.9541C10.2451 10.8115 10.2852 10.709 10.3662 10.5479C10.4473 10.3848 10.4063 10.2422 10.3457 10.1211C10.2842 9.99805 9.79688 8.80078 9.59375 8.3125C9.39063 7.84473 9.18652 7.90723 9.03516 7.90723C8.89355 7.90723 8.73047 7.90723 8.56738 7.90723C8.4043 7.90723 8.14063 7.96777 7.91797 8.21289C7.69434 8.45703 7.0625 9.04785 7.0625 10.248C7.0625 11.4502 7.93555 12.6104 8.05859 12.7725C8.18066 12.9355 9.86035 15.5234 12.4336 16.6357C13.0459 16.9004 13.5234 17.0586 13.8994 17.1777C14.5059 17.3701 15.0615 17.3428 15.501 17.2773C15.9863 17.2051 16.9922 16.6699 17.2012 16.0791C17.4102 15.4883 17.4102 14.9795 17.3496 14.8789C17.2891 14.7764 17.126 14.7158 16.8818 14.5947H16.4883V14.4453Z" /></svg>
+                                </Link>
+                                <Link
+                                    href="#contact"
+                                    className="inline-flex items-center justify-center gap-2 bg-white/5 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-white/10 transition-all border border-white/10"
+                                >
+                                    Teklif Al
+                                </Link>
+                            </div>
                         </Reveal>
                     </div>
 
-                    {/* Pilot Image */}
-                    <div className="lg:col-span-1 flex justify-center">
+                    {/* 2. Pilot Image (Center - 3 Cols) */}
+                    <div className="lg:col-span-3 flex items-center justify-center py-8 lg:py-0">
                         <Reveal delay={0.4} variant="zoom">
-                            <div className="relative w-[280px] h-[350px] rounded-3xl overflow-hidden group">
+                            <div className="relative w-[240px] h-[300px] rounded-2xl overflow-hidden rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white/5 shadow-2xl shadow-aerialix-dark/50">
                                 <img
                                     src="https://ext.same-assets.com/1370035257/3403264598.avif"
-                                    alt="Professional drone pilot"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    alt="Umut - Pilot"
+                                    className="w-full h-full object-cover"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-transparent to-transparent opacity-60" />
+                                <div className="absolute bottom-4 left-4">
+                                    <p className="text-white font-bold text-lg">Umut Kutal</p>
+                                    <p className="text-[#c5f536] text-xs uppercase tracking-wider font-bold">Lisanslı Pilot</p>
+                                </div>
                             </div>
                         </Reveal>
                     </div>
 
-                    {/* Navigation */}
-                    <div className="lg:col-span-1">
+                    {/* 3. Links Section (Right - 5 Cols) [RE-DESIGNED AREA] */}
+                    <div className="lg:col-span-5 bg-white/5 rounded-3xl p-8 border border-white/5">
                         <Reveal delay={0.6} width="100%">
-                            {/* Logo */}
-                            <div className="flex items-center gap-2 mb-8 select-none">
-                                <img
-                                    src="/logo.png"
-                                    alt="Kutal Drone Logo"
-                                    className="h-12 w-auto object-contain"
-                                />
-                            </div>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-4">
 
-                            {/* Links Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                                {/* Sayfalar */}
-                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
-                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Sayfalar</h3>
-                                    <details className="group md:hidden">
-                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
-                                            Sayfalar
-                                            <span className="transition-transform group-open:rotate-180">
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                            </span>
-                                        </summary>
-                                        <div className="mt-4 space-y-2">
+                                {/* COL 1: Menü & Yasal */}
+                                <div className="space-y-8">
+                                    <div>
+                                        <h3 className="text-[#c5f536] font-bold text-xs uppercase tracking-widest mb-5">Kurumsal</h3>
+                                        <ul className="space-y-3">
                                             {navLinks.main.map((link) => (
-                                                <Link key={link.label} href={link.href} className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm font-medium">
-                                                    {link.label}
-                                                </Link>
+                                                <li key={link.label}>
+                                                    <Link href={link.href} className="text-white/60 hover:text-white transition-colors text-sm font-medium block hover:translate-x-1 duration-200">
+                                                        {link.label}
+                                                    </Link>
+                                                </li>
                                             ))}
-                                        </div>
-                                    </details>
-                                    <div className="hidden md:block">
-                                        {navLinks.main.map((link) => (
-                                            <Link key={link.label} href={link.href} className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm font-medium">
-                                                {link.label}
-                                            </Link>
-                                        ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-[#c5f536] font-bold text-xs uppercase tracking-widest mb-5">Yasal</h3>
+                                        <ul className="space-y-3">
+                                            {navLinks.legal.map((link) => (
+                                                <li key={link.label}>
+                                                    <Link href={link.href} className="text-white/60 hover:text-white transition-colors text-xs block hover:translate-x-1 duration-200">
+                                                        {link.label}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
 
-                                {/* Hizmetler */}
-                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
-                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Hizmetler</h3>
-                                    <details className="group md:hidden">
-                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
-                                            Hizmetler
-                                            <span className="transition-transform group-open:rotate-180">
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                            </span>
-                                        </summary>
-                                        <div className="mt-4 space-y-2">
-                                            <Link href="/emlak-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Emlak Drone</Link>
-                                            <Link href="/dugun-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Düğün Drone</Link>
-                                            <Link href="/isletme-tanitim-filmi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">İşletme Tanıtım</Link>
-                                            <Link href="/etkinlik-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors text-sm">Etkinlik Drone</Link>
-                                        </div>
-                                    </details>
-                                    <div className="hidden md:block">
-                                        <Link href="/emlak-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Emlak Drone</Link>
-                                        <Link href="/dugun-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Düğün Drone</Link>
-                                        <Link href="/isletme-tanitim-filmi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">İşletme Tanıtım</Link>
-                                        <Link href="/etkinlik-drone-cekimi" className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm">Etkinlik Drone</Link>
-                                    </div>
-                                </div>
-
-                                {/* Bölgeler */}
-                                <div className="border-b border-white/10 md:border-none pb-4 md:pb-0">
-                                    <h3 className="text-white font-semibold mb-4 hidden md:block">Hizmet Bölgeleri</h3>
-                                    <details className="group md:hidden">
-                                        <summary className="text-white font-semibold cursor-pointer list-none flex justify-between items-center">
-                                            Hizmet Bölgeleri
-                                            <span className="transition-transform group-open:rotate-180">
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                            </span>
-                                        </summary>
-                                        <div className="mt-4 space-y-2 text-white/60 text-sm">
-                                            <p>Tekirdağ Merkez</p>
-                                            <p>Süleymanpaşa</p>
-                                            <p>Çorlu</p>
-                                            <p>Çerkezköy</p>
-                                            <p>Marmara Ereğlisi</p>
-                                            <p>Saray</p>
-                                        </div>
-                                    </details>
-                                    <div className="hidden md:block space-y-2 text-white/60 text-sm">
-                                        <p>Tekirdağ Merkez</p>
-                                        <p>Süleymanpaşa</p>
-                                        <p>Çorlu</p>
-                                        <p>Çerkezköy</p>
-                                        <p>Marmara Ereğlisi</p>
-                                        <p>Saray</p>
-                                    </div>
-                                </div>
-
-                                {/* Legal & Contact */}
+                                {/* COL 2: Hizmetler & Bölgeler */}
                                 <div>
-                                    <h3 className="text-white font-semibold mb-4">İletişim</h3>
-                                    {navLinks.contact.map((link) => (
-                                        <Link
-                                            key={link.label}
-                                            href={link.href}
-                                            className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-sm font-medium"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
-                                    <div className="mt-6">
-                                        {navLinks.legal.map((link) => (
+                                    <h3 className="text-[#c5f536] font-bold text-xs uppercase tracking-widest mb-5">Hizmetlerimiz</h3>
+                                    <ul className="space-y-3 mb-8">
+                                        <li className="text-white/60 text-sm hover:text-white transition-colors cursor-pointer hover:translate-x-1 duration-200">
+                                            <Link href="/emlak-drone-cekimi">Emlak Çekimi</Link>
+                                        </li>
+                                        <li className="text-white/60 text-sm hover:text-white transition-colors cursor-pointer hover:translate-x-1 duration-200">
+                                            <Link href="/isletme-tanitim-filmi">Fabrika Tanıtımı</Link>
+                                        </li>
+                                        <li className="text-white/60 text-sm hover:text-white transition-colors cursor-pointer hover:translate-x-1 duration-200">
+                                            <Link href="/dugun-drone-cekimi">Düğün Hikayesi</Link>
+                                        </li>
+                                    </ul>
+
+                                    <h3 className="text-[#c5f536] font-bold text-xs uppercase tracking-widest mb-5">Popüler Bölgeler</h3>
+                                    <ul className="space-y-3">
+                                        <li><Link href="/bolge/tekirdag-drone-cekimi" className="text-white/60 text-xs hover:text-white transition-colors block hover:translate-x-1 duration-200">Tekirdağ Merkez</Link></li>
+                                        <li><Link href="/bolge/corlu-drone-cekimi" className="text-white/60 text-xs hover:text-white transition-colors block hover:translate-x-1 duration-200">Çorlu</Link></li>
+                                        <li><Link href="/bolge/cerkezkoy-drone" className="text-white/60 text-xs hover:text-white transition-colors block hover:translate-x-1 duration-200">Çerkezköy</Link></li>
+                                        <li><Link href="/bolge/edirne-drone-cekimi" className="text-white/60 text-xs hover:text-white transition-colors block hover:translate-x-1 duration-200">Edirne</Link></li>
+                                    </ul>
+                                </div>
+
+                                {/* COL 3: İletişim */}
+                                <div className="col-span-2 md:col-span-1">
+                                    <h3 className="text-[#c5f536] font-bold text-xs uppercase tracking-widest mb-5">İletişim</h3>
+                                    <div className="space-y-4">
+                                        <a href="tel:05529501367" className="block group">
+                                            <span className="text-xs text-white/40 block mb-1 group-hover:text-[#c5f536] transition-colors">Telefon</span>
+                                            <span className="text-white font-medium text-sm">0552 950 13 67</span>
+                                        </a>
+                                        <div className="block group">
+                                            <span className="text-xs text-white/40 block mb-1 group-hover:text-[#c5f536] transition-colors">Adres</span>
+                                            <span className="text-white font-medium text-sm leading-snug">Atlas Pasajı, Ortacami, Hükümet Cd. No:30<br />Süleymanpaşa, Tekirdağ, Türkiye</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Socials */}
+                                    <div className="flex gap-2 mt-8">
+                                        {socialLinks.slice(0, 4).map((social) => (
                                             <Link
-                                                key={link.label}
-                                                href={link.href}
-                                                className="block text-white/60 hover:text-[#c5f536] transition-colors mb-3 text-xs"
+                                                key={social.name}
+                                                href={social.href}
+                                                target="_blank"
+                                                className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-[#0a0c10] hover:bg-[#c5f536] transition-all hover:scale-110"
                                             >
-                                                {link.label}
+                                                {social.icon}
                                             </Link>
                                         ))}
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Social Links */}
-                            <div className="flex gap-3 mb-8">
-                                {socialLinks.map((social) => (
-                                    <Link
-                                        key={social.name}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:text-[#122122] hover:bg-[#c5f536] transition-all duration-300 hover:scale-110"
-                                    >
-                                        {social.icon}
-                                    </Link>
-                                ))}
-                            </div>
-
-                            {/* Copyright */}
-                            <div className="text-white/30 text-xs leading-relaxed">
-                                <p>&copy; 2025 Kutal Drone. Tüm hakları saklıdır.</p>
-                                <p className="mt-1 flex gap-1">
-                                    <Link href="#" className="hover:text-[#c5f536] transition-colors">
-                                        KutalSoft tarafından oluşturuldu
-                                    </Link>
-                                    <span>·</span>
-                                    <Link href="https://nextjs.org" target="_blank" className="hover:text-[#c5f536] transition-colors">
-                                        Powered by Next.js
-                                    </Link>
-                                </p>
                             </div>
                         </Reveal>
+                    </div>
+
+                </div>
+
+                {/* Bottom Bar */}
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-white/30 text-xs">&copy; 2025 Kutal Drone. Tüm hakları saklıdır.</p>
+                    <div className="flex items-center gap-6">
+                        <Link href="/gizlilik" className="text-white/30 text-xs hover:text-white transition-colors">Gizlilik</Link>
+                        <Link href="/kullanim-sartlari" className="text-white/30 text-xs hover:text-white transition-colors">Şartlar</Link>
+                        <span className="text-white/10 text-xs">|</span>
+                        <span className="text-white/30 text-xs">Designed by KutalSoft</span>
                     </div>
                 </div>
             </div>

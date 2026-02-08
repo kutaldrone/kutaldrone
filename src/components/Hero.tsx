@@ -70,8 +70,8 @@ export const Hero = () => {
     // Slide the solid overlay UP to reveal the image underneath, simulating descent
     const skyOverlayY = useTransform(smoothProgress, [0, 0.3], ["0%", "-100%"]);
 
-    // 2. Drone Z-Index: Front to Back
-    const droneZIndex = useTransform(smoothProgress, (v) => v < 0.15 ? 50 : 10);
+    // 2. Drone Z-Index: User requested it to be in FRONT of the text (z-50)
+    const droneZIndex = useTransform(smoothProgress, [0, 1], [50, 50]);
 
     // Text Move Up Animation (Simulating natural scroll)
     const textY = useTransform(smoothProgress, [0, 0.3], ["0%", "-200%"]);
@@ -206,19 +206,21 @@ export const Hero = () => {
                 </div>
 
                 {/* SCROLL INDICATOR (Visual Cue) */}
+                {/* Separated style (opacity) and animate (y-loop) to prevent conflicts */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, y: [0, 10, 0] }}
-                    transition={{ delay: 2, duration: 2, repeat: Infinity }}
+                    style={{ opacity: opacity1 }}
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none"
-                    style={{ opacity: opacity1 }} // Only show in Phase 1
                 >
-                    <div className="flex flex-col items-center gap-2">
+                    <motion.div
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ delay: 2, duration: 2, repeat: Infinity }}
+                        className="flex flex-col items-center gap-2"
+                    >
                         <span className="text-white/50 text-xs tracking-widest uppercase font-sans">Kaydır</span>
                         <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7-7-7" />
                         </svg>
-                    </div>
+                    </motion.div>
                 </motion.div>
 
             </div>

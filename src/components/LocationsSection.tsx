@@ -6,11 +6,11 @@ const LOCATIONS = [
     { name: "Tekirdağ Merkez", slug: "/bolge/tekirdag-drone-cekimi" },
     { name: "Süleymanpaşa", slug: "/bolge/suleymanpasa-drone-cekimi" },
     { name: "Çorlu", slug: "/bolge/corlu-drone-cekimi" },
-    { name: "Çerkezköy", slug: "/bolge/cerkezkoy-drone-cekimi" },
-    { name: "Yeniçiftlik", slug: "/bolge/yeniciftlik-drone-cekimi" },
-    { name: "Marmaraereğlisi", slug: "/bolge/marmaraereglisi-drone-cekimi" },
-    { name: "Muratlı", slug: "/bolge/muratli-drone-cekimi" },
-    { name: "Malkara", slug: "/bolge/malkara-drone-cekimi" },
+    { name: "Çerkezköy", slug: "/bolge/cerkezkoy-drone" },
+    { name: "Yeniçiftlik", slug: "/bolge/yeniciftlik-drone" },
+    { name: "Marmaraereğlisi", slug: "/bolge/marmaraereglisi-drone" },
+    { name: "Muratlı", slug: "/bolge/muratli-drone" },
+    { name: "Malkara", slug: "/bolge/malkara-drone" },
     { name: "Trakya Genel", slug: "/bolge/trakya-drone-cekimi" },
 ];
 

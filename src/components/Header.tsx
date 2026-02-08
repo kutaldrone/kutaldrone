@@ -34,6 +34,7 @@ export default function Header() {
         { href: "/#services", label: "Hizmetler" },
         { href: "/hizmet-bolgeleri", label: "Hizmet Bölgeleri" },
         { href: "/fiyatlandirma", label: "Fiyatlandırma" },
+        { href: "/blog", label: "Blog" },
         { href: "/#projects", label: "Projeler" },
         { href: "/sss", label: "SSS" },
     ];
