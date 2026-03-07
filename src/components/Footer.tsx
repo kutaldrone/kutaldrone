@@ -58,7 +58,7 @@ export default function Footer() {
                     <div className="lg:col-span-4">
                         <Reveal delay={0.2} width="100%">
                             <Link href="/" className="inline-block mb-8">
-                                <img src="/logo.png" alt="Kutal Drone" className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity" />
+                                <img src="/logo.png" alt="Kutal Drone - Tekirdağ Çorlu Profesyonel Havadan Çekim Ajansı Logosu" className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity" />
                             </Link>
 
                             <h2 className="font-heading font-bold text-3xl text-white mb-6 leading-tight">
@@ -93,7 +93,7 @@ export default function Footer() {
                             <div className="relative w-[240px] h-[300px] rounded-2xl overflow-hidden rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white/5 shadow-2xl shadow-aerialix-dark/50">
                                 <img
                                     src="https://ext.same-assets.com/1370035257/3403264598.avif"
-                                    alt="Umut - Pilot"
+                                    alt="Sertifikalı Profesyonel Drone Pilotu Umut Kutal, Tekirdağ havadan çekim uzmanı"
                                     className="w-full h-full object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-transparent to-transparent opacity-60" />
@@ -197,9 +197,29 @@ export default function Footer() {
 
                 </div>
 
+                {/* SEO: Footer Local Links Network */}
+                <div className="pt-8 mb-6 border-t border-white/5">
+                    <h4 className="text-[#c5f536] text-xs font-bold mb-3 uppercase tracking-wider">Hizmet Bölgelerimiz (Hava Çekimi)</h4>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs">
+                        <Link href="/bolge/tekirdag-drone-cekimi" className="text-white/40 hover:text-white transition-colors">Tekirdağ Drone Çekimi</Link>
+                        <Link href="/bolge/suleymanpasa-drone-cekimi" className="text-white/40 hover:text-white transition-colors">Süleymanpaşa Emlak Drone</Link>
+                        <Link href="/bolge/corlu-drone-cekimi" className="text-white/40 hover:text-white transition-colors">Çorlu Fabrika Tanıtımı</Link>
+                        <Link href="/bolge/cerkezkoy-drone" className="text-white/40 hover:text-white transition-colors">Çerkezköy Sanayi Çekimi</Link>
+                        <Link href="/bolge/kapakli-drone" className="text-white/40 hover:text-white transition-colors">Kapaklı Düğün Hikayesi</Link>
+                        <Link href="/bolge/marmaraereglisi-drone" className="text-white/40 hover:text-white transition-colors">Marmaraereğlisi Yazlık Çekimi</Link>
+                        <Link href="/bolge/sarkoy-drone" className="text-white/40 hover:text-white transition-colors">Şarköy Havadan Görüntüleme</Link>
+                        <Link href="/bolge/hayrabolu-drone" className="text-white/40 hover:text-white transition-colors">Hayrabolu Drone Pilotu</Link>
+                        <Link href="/bolge/muratli-drone" className="text-white/40 hover:text-white transition-colors">Muratlı 4K Video</Link>
+                        <Link href="/bolge/saray-drone" className="text-white/40 hover:text-white transition-colors">Saray Dış Çekim</Link>
+                        <Link href="/bolge/malkara-drone" className="text-white/40 hover:text-white transition-colors">Malkara Tanıtım Filmi</Link>
+                        <Link href="/bolge/trakya-drone-cekimi" className="text-white/40 hover:text-white transition-colors">Trakya Profesyonel Drone</Link>
+                        <Link href="/hizmet-bolgeleri" className="text-[#c5f536]/80 hover:text-white transition-colors">Tüm Hizmet Bölgeleri &rarr;</Link>
+                    </div>
+                </div>
+
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-white/30 text-xs">&copy; 2025 Kutal Drone. Tüm hakları saklıdır.</p>
+                    <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} Kutal Drone. Tüm hakları saklıdır.</p>
                     <div className="flex items-center gap-6">
                         <Link href="/gizlilik" className="text-white/30 text-xs hover:text-white transition-colors">Gizlilik</Link>
                         <Link href="/kullanim-sartlari" className="text-white/30 text-xs hover:text-white transition-colors">Şartlar</Link>

@@ -86,7 +86,7 @@ export const Hero = () => {
                 <motion.div style={{ y: bgY, scale: bgScale }} className="absolute top-0 left-0 w-full h-[100vh] md:h-[400vh] z-0">
                     <Image
                         src="/arkaplan.avif"
-                        alt="Background"
+                        alt="Tekirdağ Süleymanpaşa profesyonel havadan drone çekimi manzarası"
                         fill
                         className="object-cover md:object-contain object-top"
                         priority
@@ -129,7 +129,7 @@ export const Hero = () => {
                         >
                             <img
                                 src="https://ext.same-assets.com/1370035257/1928263438.avif"
-                                alt="Professional drone"
+                                alt="4K Video çekim kapasiteli profesyonel sinematik drone - Kutal Drone"
                                 className="w-full h-full object-contain"
                             />
                         </motion.div>
@@ -141,13 +141,16 @@ export const Hero = () => {
 
                     {/* SECTION 1: HERO TITLE */}
                     <motion.div style={{ opacity: opacity1, scale: scale1, y: textY }} className="absolute text-center flex flex-col items-center gap-4 md:gap-6 select-none w-full px-4">
-                        {/* KUTAL DRONE TEXT */}
                         <div className="flex flex-col items-center leading-[0.85]">
-                            <h1 className="font-display font-bold text-white tracking-tight"
+                            {/* SEO HIGHLIGHT: Gizli H1 Etiketi (Botlar İçin) */}
+                            <h1 className="sr-only">Tekirdağ Profesyonel Drone Çekimi ve Hava Fotoğrafçılığı | Kutal Drone</h1>
+                            
+                            {/* Görsel Tasarım (Değişmedi, artık paragrafa dönüştürüldü) */}
+                            <p className="font-display font-bold text-white tracking-tight"
                                 style={{ fontSize: "clamp(3.5rem, 15vw, 16rem)" }}>
                                 Kutal
-                            </h1>
-                            <h1 className="font-display font-bold text-white/90 tracking-tight"
+                            </p>
+                            <p className="font-display font-bold text-white/90 tracking-tight"
                                 style={{
                                     fontSize: "clamp(3rem, 12vw, 13rem)",
                                     background: "linear-gradient(to bottom, #ffffff 30%, rgba(255,255,255,0.5))",
@@ -155,7 +158,7 @@ export const Hero = () => {
                                     WebkitTextFillColor: "transparent"
                                 }}>
                                 Drone
-                            </h1>
+                            </p>
                             <p className="text-white/70 text-lg md:text-2xl mt-4 tracking-wide font-sans max-w-2xl text-center px-4">
                                 Sıradan görüntülerin ötesine geçin; dünyanızı gökyüzünden sinematik bir başyapıta dönüştürüyoruz.
                             </p>
