@@ -41,12 +41,15 @@ export const Hero = () => {
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             const { innerWidth, innerHeight } = window;
-            // Calculate distance from center
-            const x = -(e.clientX - innerWidth / 2) / 25; // Inverted direction
-            const y = -(e.clientY - innerHeight / 2) / 25;
+            // Sadece masaüstü cihazlar için mouse parallax çalıştır
+            if (innerWidth >= 768) {
+                // Calculate distance from center
+                const x = -(e.clientX - innerWidth / 2) / 25; // Inverted direction
+                const y = -(e.clientY - innerHeight / 2) / 25;
 
-            mouseX.set(x);
-            mouseY.set(y);
+                mouseX.set(x);
+                mouseY.set(y);
+            }
         };
 
         window.addEventListener("mousemove", handleMouseMove);

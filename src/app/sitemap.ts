@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/isletme-tanitim-filmi',
         '/etkinlik-drone-cekimi',
         '/dugun-drone-cekimi',
+        '/3d-haritalama',
+        '/hizmet-bolgeleri',
         '/sss',
         '/gizlilik',
         '/kullanim-sartlari',

@@ -60,6 +60,10 @@ export default function RootLayout({
             <head>
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="google-site-verification" content="YdXAS-VWZpmO_qbglgoTBJzxLi6yoHPBV14P2HMDjuU" />
+                <meta name="geo.region" content="TR-59" />
+                <meta name="geo.placename" content="Tekirdağ" />
+                <meta name="geo.position" content="40.978621;27.512709" />
+                <meta name="ICBM" content="40.978621, 27.512709" />
 
                 <Script
                     id="org-schema"

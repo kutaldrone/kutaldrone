@@ -11,13 +11,15 @@ const config: Config = {
             colors: {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
+                "bg-light": "var(--bg-light)",
+                "bg-dark": "var(--bg-dark)",
                 aerialix: {
                     green: "#c9fd74",
                     dark: "#020305",
                 },
-                "accent-lime": "#c5f536",
-                "text-dark": "#122122",
-                "text-muted": "#5a6a6d",
+                "accent-lime": "var(--accent-lime)",
+                "text-dark": "var(--text-dark)",
+                "text-muted": "var(--text-muted)",
             },
             fontFamily: {
                 sans: ["var(--font-inter)", "sans-serif"],

@@ -1,20 +1,21 @@
-name: Ghost Writer AI
+name: Ghost Writer AI - Auto SEO
 
 on:
   schedule:
-    # Run at 09:00 every day
-    - cron: '0 9 * * *'
-  workflow_dispatch: # Allow manual trigger from GitHub UI
+    # 06:00 UTC = 09:00 TRT (Türkiye)
+    # Runs on Sunday (0) and Thursday (4)
+    - cron: '0 6 * * 0,4'
+  workflow_dispatch: # Allows manual trigger from GitHub UI for testing
 
 permissions:
   contents: write
 
 jobs:
-  write-post:
+  generate-seo-post:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -22,14 +23,27 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate Blog Post
+      - name: Install Dependencies
+        run: npm ci || npm install
+
+      - name: Install Generative AI explicitly if missing
+        run: npm install @google/generative-ai
+
+      - name: Run Ghost Writer Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/ghost-writer.js
 
-      - name: Commit and Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "🤖 AI Ghost Writer: New blog post generated"
-          branch: main
-          file_pattern: 'content/blog/*.md'
+      - name: Commit and Push new Blog Post
+        run: |
+          git config --global user.name "Ghost Writer AI"
+          git config --global user.email "bot@kutaldrone.com.tr"
+          git add content/blog/*.md
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No new blog post generated or post already exists."
+          else
+            git commit -m "chore(content): Auto-generated SEO blog post [skip ci]?"
+            # Using standard push if permissions are properly given via 'contents: write'
+            git push
+          fi

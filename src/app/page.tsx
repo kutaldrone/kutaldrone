@@ -1,8 +1,5 @@
 import Header from "../components/Header";
 import { Hero } from "../components/Hero";
-// import Features from "../components/Features";
-// import Mission from "../components/Mission";
-// import Parallax from "../components/Parallax";
 import Services from "../components/Services";
 import Process from "../components/Process"; // Replaces Testimonials
 import RecentFlights from "../components/RecentFlights"; // Replaces Projects
@@ -15,9 +12,6 @@ export default function Home() {
         <main>
             <Header />
             <Hero />
-            {/* <Features /> */}
-            {/* <Mission /> */}
-            {/* <Parallax /> */}
             <Services />
             <Process />
             <RecentFlights />

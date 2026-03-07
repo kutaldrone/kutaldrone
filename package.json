@@ -7,9 +7,11 @@
         "build": "next build",
         "start": "next start",
         "lint": "bunx tsc --noEmit && next lint",
-        "format": "bunx biome format --write"
+        "format": "bunx biome format --write",
+        "ghost": "node scripts/ghost-writer.js"
     },
     "dependencies": {
+        "@google/generative-ai": "^0.24.1",
         "@studio-freight/react-lenis": "^0.0.47",
         "@types/leaflet": "^1.9.21",
         "class-variance-authority": "^0.7.1",

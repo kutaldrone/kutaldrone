@@ -94,7 +94,8 @@ export default function Contact() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                         <p className="text-white/90 text-sm">
-                                            {COMPANY.address.city}, {COMPANY.address.state}
+                                            {COMPANY.address.street}<br />
+                                            {COMPANY.address.zip} {COMPANY.address.city}/{COMPANY.address.state}
                                         </p>
                                     </div>
                                 </div>

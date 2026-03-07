@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 :root {
+    /* Tailwind Sync Colors */
     --bg-light: #e6f0f5;
     --bg-dark: #122122;
     --accent-lime: #c5f536;

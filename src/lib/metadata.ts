@@ -130,10 +130,97 @@ export function generateLocalBusinessSchema() {
         },
         openingHoursSpecification: {
             "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             opens: "09:00",
-            closes: "18:00",
+            closes: "19:00",
         },
         sameAs: Object.values(COMPANY.social),
+        areaServed: [
+            { "@type": "City", "name": "Tekirdağ" },
+            { "@type": "City", "name": "Süleymanpaşa" },
+            { "@type": "City", "name": "Çorlu" },
+            { "@type": "City", "name": "Çerkezköy" },
+            { "@type": "City", "name": "Kapaklı" },
+            { "@type": "City", "name": "Ergene" },
+            { "@type": "City", "name": "Marmaraereğlisi" },
+            { "@type": "City", "name": "Muratlı" },
+            { "@type": "City", "name": "Saray" },
+            { "@type": "City", "name": "Hayrabolu" },
+            { "@type": "City", "name": "Malkara" },
+            { "@type": "City", "name": "Şarköy" },
+            { "@type": "City", "name": "Kırklareli" },
+            { "@type": "City", "name": "Edirne" }
+        ],
+        hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Drone Hizmetleri",
+            itemListElement: [
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "Emlak Drone Çekimi"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "Düğün ve Etkinlik Hava Çekimi"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "Tanıtım Filmi Çekimi"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "3D Haritalama ve Modelleme"
+                    }
+                }
+            ]
+        },
+    };
+}
+
+// Service Schema
+export function generateServiceSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Drone Photography and Videography",
+        provider: {
+            "@type": "LocalBusiness",
+            name: COMPANY.name
+        },
+        areaServed: {
+            "@type": "State",
+            name: "Tekirdağ"
+        },
+        hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Aerial Photography Services",
+            itemListElement: [
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "4K/6K Video Çekimi"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: "360 Derece Panorama"
+                    }
+                }
+            ]
+        }
     };
 }

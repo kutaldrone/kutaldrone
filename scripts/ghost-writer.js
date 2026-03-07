@@ -1,128 +1,115 @@
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import fs from "fs";
+import path from "path";
 
-// Configuration
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const BLOG_DIR = path.join(process.cwd(), 'content/blog');
-
-// Topics to rotate through
-const TOPICS = [
-    "Droneların İnşaat Sektöründeki Yeri ve Önemi",
-    "Düğün Fotoğrafçılığında Drone Kullanımının Avantajları",
-    "Tekirdağ'da Drone İle Keşfedilecek 5 Gizli Yer",
-    "Emlak Satışlarını Hızlandıran Drone Çekim Taktikleri",
-    "Tarımda Drone Kullanımı: Verimlilik ve Tasarruf",
-    "Drone Batarya Ömrünü Uzatmak İçin İpuçları",
-    "4K vs 1080p: Drone Videolarında Hangisi Tercih Edilmeli?",
-    "Gayrimenkul Pazarlamasında Hava Fotoğraflarının Gücü",
-    "Drone Çekimi Yaptırmadan Önce Bilmeniz Gerekenler",
-    "Tekirdağ Sanayi Bölgelerinde Drone ile Denetim Avantajları",
-    "Drone Teknolojisinin Geleceği: 2030 Öngörüleri",
-    "Havadan Haritalama ve Fotogrametri Nedir?",
-    "Etkinlik ve Festival Çekimlerinde Drone Kullanımı",
-    "Drone Pilotu Olmak İçin Gerekenler ve İpuçları",
-    "Marmaraereğlisi ve Şarköy'de Yazlık Alırken Havadan Bakış"
-];
-
-// Helper to get random item
-const getRandomTopic = () => TOPICS[Math.floor(Math.random() * TOPICS.length)];
-
-// Generate Content using Gemini
-async function generateBlogPost(topic) {
-    if (!GEMINI_API_KEY) {
-        console.error("Error: GEMINI_API_KEY is not set.");
-        process.exit(1);
-    }
-
-    const prompt = `
-    Sen profesyonel bir blog yazarısın. "Kutal Drone" adlı, Tekirdağ merkezli bir drone çekim firması için blog yazısı yazıyorsun.
-    
-    Konu: "${topic}"
-    
-    Kurallar:
-    1. Yazı dili Türkçe, samimi ve profesyonel olsun.
-    2. Yaklaşık 400-600 kelime olsun.
-    3. Markdown formatında olsun.
-    4. Mutlaka bir "Frontmatter" bloğu ile başlasın.
-    5. SEO uyumlu olsun, anahtar kelimeleri doğal bir şekilde geçir.
-    6. Yazının sonunda "Kutal Drone ile iletişime geçin" mesajı ver.
-    
-    Frontmatter Formatı:
-    ---
-    title: "İlgi Çekici Başlık"
-    slug: "seo-uyumlu-url-slug"
-    image: "https://image.pollinations.ai/prompt/${encodeURIComponent(topic)}%20drone%20view%20cinematic%20lighting?width=1200&height=630&nologo=true"
-    excerpt: "Yazının 1-2 cümlelik kısa özeti."
-    date: "${new Date().toISOString()}"
-    seoTitle: "SEO Başlığı"
-    seoDescription: "SEO Açıklaması"
-    ---
-    
-    İçerik buradan başlasın...
-    `;
-
-    console.log(`Generating post for topic: ${topic}...`);
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: prompt }]
-            }]
-        })
-    });
-
-    if (!response.ok) {
-        throw new Error(`Gemini API Error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const generatedText = data.candidates[0].content.parts[0].text;
-
-    // Clean up markdown code blocks if present
-    return generatedText.replace(/^```markdown\n/, '').replace(/^```\n/, '').replace(/\n```$/, '');
+// 1. Initialize Gemini API
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+    console.error("FATAL ERROR: GEMINI_API_KEY environment variable is missing.");
+    process.exit(1);
 }
 
-async function main() {
+const genAI = new GoogleGenerativeAI(apiKey);
+
+// 2. Define Advanced SEO Prompt
+const ADVANCED_SEO_PROMPT = `
+Sen Türkiye pazarında (Özellikle Tekirdağ ilinde) uçan profesyonel drone hizmetleri sunan "Kutal Drone" firmasının Kıdemli SEO Uzmanı ve Metin Yazarı'sın (Copywriter). Görevin, yerel arama motoru optimizasyonu (Local SEO) kurallarına %100 uyan, Google'da 1. sayfaya çıkacak kalitede mükemmel bir Markdown (.md) blog yazısı oluşturmaktır.
+
+Talimatlar:
+1. LOKASYON SEÇİMİ (Çok Önemli): 
+   Yazının odaklanacağı hedef kitle şu 11 ilçeden biri olmalıdır: Süleymanpaşa, Çorlu, Çerkezköy, Kapaklı, Ergene, Marmaraereğlisi, Saray, Malkara, Hayrabolu, Şarköy, Muratlı.
+   **KRİTİK KURAL:** Seçim yaparken %60 ihtimalle her zaman "SÜLEYMANPAŞA" ilçesini ana odak noktası olarak seçmelisin. Diğer ilçeleri sadece ara sıra (%40 ihtimalle) seçebilirsin.
+
+2. KONU SEÇİMİ (Rastgele Özel Bir Odak Seç): 
+   Yukarıda seçtiğin lokasyona (tercihen Süleymanpaşa'ya) uygun olarak aşağıdaki kategorilerden BİRİNİ derinlemesine incele:
+   - Gayrimenkul & Emlak Çekimi (Ev, villa, arsa havadan görünümü)
+   - Fabrika & Sanayi Tanıtımı (Bölgedeki OSB odaklı dış çekimler, üretim tesisi uçuşları)
+   - Düğün & Etkinlik (Açık hava düğünleri, kır düğünleri, kumsal/deniz kenarı organizasyonu)
+   - 3D Haritalama & Tarım (Büyük tarım arazilerinin veya sanayi bölgelerinin ortofoto haritalanması)
+   - Şantiye & İnşaat İlerleme Takibi
+
+3. YAZININ YAPISI VE UZUNLUĞU:
+   - Yazı en az 600 kelime olmalıdır.
+   - Bilgilendirici, ikna edici ve profesyonel bir şirket ağzıyla (Kutal Drone dilinden) yazılmalıdır.
+   - Sıkıcı ansiklopedik bilgiler yerine "Müşterinin hangi sorununu çözüyoruz ve bölgesel avantajımız ne?" gibi pratik değerlere odaklanmalıdır.
+
+3. BAŞLIKLAR (H1, H2, H3 hiyerarşisi):
+   - Başlıklar net, ilgi çekici ve mutlaka hedef kitlenin arayabileceği bölgesel anahtar kelimeler içermelidir (Örn: "Çorlu Fabrika Tanıtım Filmi İçin Neden Drone Tercih Edilmeli?").
+
+4. ANAHTAR KELİME DAĞILIMI (Local SEO):
+   - Yazının içine zorlama durmayacak şekilde şu kelimeleri doğal akışta yedir (Latent Semantic Indexing):
+     "Tekirdağ drone çekimi", "Çorlu havadan çekim", "profesyonel drone pilotu", "4K video", "Süleymanpaşa", "Kutal Drone", "havadan fotoğrafçılık", "OSB tesis tanıtımı", "drone kiralama hizmeti".
+   - İlk 100 kelimede ana anahtar kelime kesinlikle geçmelidir.
+
+5. HAREKETE GEÇİRİCİ MESAJ (Call to Action - CTA):
+   - Yazının en sonunda mutlaka "Kutal Drone | Tekirdağ ve Çorlu'nun Profesyonel Drone Çözüm Ortağı" vurgusu yapılarak, okuyucunun iletişimi veya teklif alması sağlanacak güçlü bir bitiş paragrafı eklenmelidir.
+   
+6. ZORUNLU ÇIKTI FORMATI (YAML Frontmatter + Markdown):
+Sadece aşağıdaki formatta, kod bloğu ({JSON} veya \`\`\`markdown vs. DEGIL) İÇERMEYEN SALT METİN çıktısı ver. Başında veya sonunda senin kendi konuşmaların OLMAYACAK.
+Şu blokla başla:
+
+---
+title: "[Seçilen İlgi Çekici Başlık]"
+date: "YYYY-MM-DDTHH:MM:SS.000Z" (Bugünün tarihi ve saatini ISO formatında yaz)
+image: "https://images.unsplash.com/photo-[Drone, Endüstri veya Düğünle İlgili Uygun Bir Unsplash IDsi]?q=80&w=2574&auto=format&fit=crop"
+excerpt: "[150 karakteri geçmeyen vurucu bir meta açıklama özeti]"
+seoTitle: "[Seçtiğin başlığın Google için en fazla 60 karakterlik optimize hali | Kutal Drone]"
+seoDescription: "[Excerpt ile aynı olabilir veya farklı Local SEO kelimeleri içerebilir. Max 160 karakter]"
+---
+
+Sonrasında Markdown ile biçimlendirilmiş yazıyı yaz. SADECE BU ÇIKTIYI VER, BAŞKA BİR ŞEY SÖYLEME.
+`;
+
+// 3. Main Function
+async function generateBlogPost() {
     try {
-        // Create blog directory if it doesn't exist
-        if (!fs.existsSync(BLOG_DIR)) {
-            fs.mkdirSync(BLOG_DIR, { recursive: true });
+        console.log("Starting Ghost Writer AI generation...");
+        // Using gemini-2.5-flash which is perfect for fast and high-quality text generation
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+        const result = await model.generateContent(ADVANCED_SEO_PROMPT);
+        const response = result.response;
+        const textToSave = response.text();
+
+        // 4. Determine title and filename safely
+        const titleMatch = textToSave.match(/^title:\s*"([^"]+)"/m) || textToSave.match(/^title:\s*'([^']+)'/m) || textToSave.match(/^title:\s*([^\n]+)/m);
+        
+        let filename = `auto-blog-post-${Date.now()}.md`; // Fallback name
+        if (titleMatch && titleMatch[1]) {
+            let title = titleMatch[1].trim();
+            // Create a slug from title
+            filename = title
+                .toLowerCase()
+                .replace(/ğ/g, "g")
+                .replace(/ü/g, "u")
+                .replace(/ş/g, "s")
+                .replace(/ı/g, "i")
+                .replace(/ö/g, "o")
+                .replace(/ç/g, "c")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)+/g, "") + ".md";
         }
 
-        // Get Topic
-        const topic = getRandomTopic();
+        // Remove possible markdown formatting backticks if AI decided to wrap it anyway
+        const cleanedText = textToSave.replace(/^```(markdown|md)?\s*\n/i, "").replace(/\n```$/i, "");
 
-        // Generate Content
-        const content = await generateBlogPost(topic);
-
-        // Extract slug from frontmatter to use as filename
-        const slugMatch = content.match(/slug:\s*"([^"]+)"/);
-        const slug = slugMatch ? slugMatch[1] : `blog-post-${Date.now()}`;
-
-        const fileName = `${slug}.md`;
-        const filePath = path.join(BLOG_DIR, fileName);
-
-        // Check if file already exists (rare but possible with random topics)
-        if (fs.existsSync(filePath)) {
-            console.log(`File ${fileName} already exists. Skipping.`);
-            return;
+        // 5. Save to disk
+        const blogDir = path.join(process.cwd(), "content", "blog");
+        
+        // Ensure directory exists, though it should already
+        if (!fs.existsSync(blogDir)) {
+            fs.mkdirSync(blogDir, { recursive: true });
         }
 
-        // Write File
-        fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`Successfully generated blog post: ${fileName}`);
+        const filePath = path.join(blogDir, filename);
+        fs.writeFileSync(filePath, cleanedText, "utf-8");
+
+        console.log(`✅ Success! Generated new SEO blog post: ${filename}`);
 
     } catch (error) {
-        console.error("Failed to generate blog post:", error);
+        console.error("❌ Error generating blog post:", error);
         process.exit(1);
     }
 }
 
-main();
+generateBlogPost();
