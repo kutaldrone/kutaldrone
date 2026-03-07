@@ -6,7 +6,6 @@ import { generateMetadata, COMPANY, generateLocalBusinessSchema } from "@/lib/me
 import Script from "next/script";
 import PageTransition from "@/components/PageTransition";
 import StickyCallButton from "@/components/StickyCallButton";
-import PWAInstallButton from "@/components/PWAInstallButton";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -93,7 +92,6 @@ export default function RootLayout({
                     <PageTransition>{children}</PageTransition>
                 </SmoothScroll>
                 <StickyCallButton />
-                <PWAInstallButton />
             </body>
         </html>
     );

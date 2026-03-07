@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import ServiceCard from "./ServiceCard";
+import TextReveal from "./TextReveal";
 
 interface Service {
     title: string;
@@ -58,9 +59,10 @@ export default async function Services() {
                     <h2 className="font-heading font-bold text-6xl text-aerialix-dark max-w-xl">
                         Hava Hizmetleri
                     </h2>
-                    <p className="font-sans text-xl text-zinc-500 max-w-sm">
-                        Profesyonel drone çekimlerinden 3D haritalamaya, her proje için özel çözümler sunuyoruz.
-                    </p>
+                    <TextReveal 
+                        text="Profesyonel drone çekimlerinden 3D haritalamaya, her proje için özel çözümler sunuyoruz." 
+                        className="font-sans text-xl text-zinc-500 max-w-sm"
+                    />
                 </div>
 
                 {/* Grid Layout - Dynamic from CMS */}

@@ -40,7 +40,7 @@ export default function Header() {
     ];
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+        <header className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 transition-all duration-500 ${isScrolled ? "bg-[#0a0c10]/70 backdrop-blur-xl border-b border-white/5 shadow-2xl" : "bg-transparent"}`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
