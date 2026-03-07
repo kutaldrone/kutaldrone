@@ -1,6 +1,9 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import fs from "fs";
-import path from "path";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const fs = require("fs");
+const path = require("path");
+
+// Load local .env variables if running manually
+require("dotenv").config({ path: path.resolve(process.cwd(), '.env') });
 
 // 1. Initialize Gemini API
 const apiKey = process.env.GEMINI_API_KEY;
