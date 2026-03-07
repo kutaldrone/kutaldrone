@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp"); // for WebP Image conversion
 
 // Load local .env variables if running manually
 require("dotenv").config({ path: path.resolve(process.cwd(), '.env') });
@@ -74,26 +75,15 @@ async function generateBlogPost() {
         const response = result.response;
         let textToSave = response.text();
 
-        // Inject a valid random Unsplash drone image
-        const VALID_IMAGES = [
-            "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=2000&auto=format&fit=crop", // City over
-            "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=2000&auto=format&fit=crop", // DJI Drone
-            "https://images.unsplash.com/photo-1579820010410-c10411aaaa88?q=80&w=2000&auto=format&fit=crop", // Beach
-            "https://images.unsplash.com/photo-1527011045974-4b52b21ba1cb?q=80&w=2000&auto=format&fit=crop", // Architecture
-            "https://images.unsplash.com/photo-1521405924368-64c5b84bec60?q=80&w=2000&auto=format&fit=crop", // Drone flying
-            "https://images.unsplash.com/photo-1506941433945-99a2aa4bd50a?q=80&w=2000&auto=format&fit=crop"  // Industrial
-        ];
-        const randomImage = VALID_IMAGES[Math.floor(Math.random() * VALID_IMAGES.length)];
-        textToSave = textToSave.replace("[IMAGE_PLACEHOLDER]", randomImage);
-
         // 4. Determine title and filename safely
         const titleMatch = textToSave.match(/^title:\s*"([^"]+)"/m) || textToSave.match(/^title:\s*'([^']+)'/m) || textToSave.match(/^title:\s*([^\n]+)/m);
         
         let filename = `auto-blog-post-${Date.now()}.md`; // Fallback name
+        let extractedTitle = "Drone Photography";
         if (titleMatch && titleMatch[1]) {
-            let title = titleMatch[1].trim();
+            extractedTitle = titleMatch[1].trim();
             // Create a slug from title
-            filename = title
+            filename = extractedTitle
                 .toLowerCase()
                 .replace(/ğ/g, "g")
                 .replace(/ü/g, "u")
@@ -105,13 +95,67 @@ async function generateBlogPost() {
                 .replace(/(^-|-$)+/g, "") + ".md";
         }
 
+        // 5. Generate AI Image Prompt
+        console.log("Generating tailored image prompt via Gemini...");
+        const imagePromptRequest = `Based on this blog post title: "${extractedTitle}", write a very short, highly descriptive English prompt (max 50 words) for a photorealistic 4k SDXL/Midjourney image generator. It should depict a professional drone shot (e.g., of a modern factory, real estate, or wedding in Turkey). Only return the English prompt and nothing else. No intro, no quotes.`;
+        
+        const imgPromptResult = await model.generateContent(imagePromptRequest);
+        const imagePrompt = imgPromptResult.response.text().trim().replace(/^"|"$/g, '');
+        console.log(`Image Prompt: ${imagePrompt}`);
+
+        console.log("Fetching AI generated image...");
+        let imageBuffer;
+        try {
+            // Attempt to use Pollinations as free high-quality Text-To-Image provider
+            const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(imagePrompt)}?width=1200&height=630&nologo=true`;
+            const imageResponse = await fetch(imageUrl, {
+                headers: { 'User-Agent': 'Mozilla/5.0 (KutalDrone SEO Bot)' }
+            });
+            
+            if (!imageResponse.ok) {
+                throw new Error(`AI Image API returned ${imageResponse.status}`);
+            }
+            imageBuffer = await imageResponse.arrayBuffer();
+            console.log("Successfully generated AI Image.");
+        } catch (imgError) {
+            console.warn("⚠️ AI Image Generation API is currently unavailable or rate-limited. Falling back to high-quality curated stock photos...");
+            const VALID_IMAGES = [
+                "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1200&auto=format&fit=crop", // City over
+                "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1200&auto=format&fit=crop", // DJI Drone
+                "https://images.unsplash.com/photo-1579820010410-c10411aaaa88?q=80&w=1200&auto=format&fit=crop", // Beach
+                "https://images.unsplash.com/photo-1527011045974-4b52b21ba1cb?q=80&w=1200&auto=format&fit=crop", // Architecture
+                "https://images.unsplash.com/photo-1521405924368-64c5b84bec60?q=80&w=1200&auto=format&fit=crop", // Drone flying
+                "https://images.unsplash.com/photo-1506941433945-99a2aa4bd50a?q=80&w=1200&auto=format&fit=crop"  // Industrial
+            ];
+            const fallbackUrl = VALID_IMAGES[Math.floor(Math.random() * VALID_IMAGES.length)];
+            const fallbackResponse = await fetch(fallbackUrl);
+            imageBuffer = await fallbackResponse.arrayBuffer();
+        }
+
+        // 6. Compress and save image as WebP
+        const publicImagesDir = path.join(process.cwd(), "public", "blog-images");
+        if (!fs.existsSync(publicImagesDir)) {
+            fs.mkdirSync(publicImagesDir, { recursive: true });
+        }
+
+        const imageBaseName = filename.replace('.md', '');
+        const imageFileName = `${imageBaseName}.webp`;
+        const imageWebpPath = path.join(publicImagesDir, imageFileName);
+
+        console.log(`Compressing image to WebP format...`);
+        await sharp(Buffer.from(imageBuffer))
+            .webp({ quality: 80 }) // High compression, great quality
+            .toFile(imageWebpPath);
+
+        // Inject the generated image local URL into Markdown
+        const localImageUrl = `/blog-images/${imageFileName}`;
+        textToSave = textToSave.replace("[IMAGE_PLACEHOLDER]", localImageUrl);
+
         // Remove possible markdown formatting backticks if AI decided to wrap it anyway
         const cleanedText = textToSave.replace(/^```(markdown|md)?\s*\n/i, "").replace(/\n```$/i, "");
 
-        // 5. Save to disk
+        // 7. Save to disk
         const blogDir = path.join(process.cwd(), "content", "blog");
-        
-        // Ensure directory exists, though it should already
         if (!fs.existsSync(blogDir)) {
             fs.mkdirSync(blogDir, { recursive: true });
         }
@@ -120,6 +164,7 @@ async function generateBlogPost() {
         fs.writeFileSync(filePath, cleanedText, "utf-8");
 
         console.log(`✅ Success! Generated new SEO blog post: ${filename}`);
+        console.log(`✅ Success! Generated and compressed WebP image: ${imageFileName}`);
 
     } catch (error) {
         console.error("❌ Error generating blog post:", error);
