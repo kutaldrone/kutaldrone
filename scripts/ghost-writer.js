@@ -54,7 +54,7 @@ Sadece aşağıdaki formatta, kod bloğu ({JSON} veya \`\`\`markdown vs. DEGIL) 
 ---
 title: "[Seçilen İlgi Çekici Başlık]"
 date: "YYYY-MM-DDTHH:MM:SS.000Z" (Bugünün tarihi ve saatini ISO formatında yaz)
-image: "https://images.unsplash.com/photo-[Drone, Endüstri veya Düğünle İlgili Uygun Bir Unsplash IDsi]?q=80&w=2574&auto=format&fit=crop"
+image: "[IMAGE_PLACEHOLDER]"
 excerpt: "[150 karakteri geçmeyen vurucu bir meta açıklama özeti]"
 seoTitle: "[Seçtiğin başlığın Google için en fazla 60 karakterlik optimize hali | Kutal Drone]"
 seoDescription: "[Excerpt ile aynı olabilir veya farklı Local SEO kelimeleri içerebilir. Max 160 karakter]"
@@ -72,7 +72,19 @@ async function generateBlogPost() {
 
         const result = await model.generateContent(ADVANCED_SEO_PROMPT);
         const response = result.response;
-        const textToSave = response.text();
+        let textToSave = response.text();
+
+        // Inject a valid random Unsplash drone image
+        const VALID_IMAGES = [
+            "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=2000&auto=format&fit=crop", // City over
+            "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=2000&auto=format&fit=crop", // DJI Drone
+            "https://images.unsplash.com/photo-1579820010410-c10411aaaa88?q=80&w=2000&auto=format&fit=crop", // Beach
+            "https://images.unsplash.com/photo-1527011045974-4b52b21ba1cb?q=80&w=2000&auto=format&fit=crop", // Architecture
+            "https://images.unsplash.com/photo-1521405924368-64c5b84bec60?q=80&w=2000&auto=format&fit=crop", // Drone flying
+            "https://images.unsplash.com/photo-1506941433945-99a2aa4bd50a?q=80&w=2000&auto=format&fit=crop"  // Industrial
+        ];
+        const randomImage = VALID_IMAGES[Math.floor(Math.random() * VALID_IMAGES.length)];
+        textToSave = textToSave.replace("[IMAGE_PLACEHOLDER]", randomImage);
 
         // 4. Determine title and filename safely
         const titleMatch = textToSave.match(/^title:\s*"([^"]+)"/m) || textToSave.match(/^title:\s*'([^']+)'/m) || textToSave.match(/^title:\s*([^\n]+)/m);

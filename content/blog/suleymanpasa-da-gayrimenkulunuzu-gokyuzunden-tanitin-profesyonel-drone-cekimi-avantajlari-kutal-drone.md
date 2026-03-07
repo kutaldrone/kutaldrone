@@ -1,7 +1,7 @@
 ---
 title: "Süleymanpaşa'da Gayrimenkulünüzü Gökyüzünden Tanıtın: Profesyonel Drone Çekimi Avantajları | Kutal Drone"
 date: "2023-10-27T10:00:00.000Z"
-image: "https://images.unsplash.com/photo-1582234033068-085e6ed71c77?q=80&w=2574&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1527011045974-4b52b21ba1cb?q=80&w=2000&auto=format&fit=crop"
 excerpt: "Süleymanpaşa'daki gayrimenkulünüz için profesyonel drone çekimi arıyorsanız, Kutal Drone size 4K kalitesinde havadan görüntüler sunar."
 seoTitle: "Süleymanpaşa Gayrimenkul Drone Çekimi | Havadan Tanıtım | Kutal Drone"
 seoDescription: "Süleymanpaşa'da ev, villa, arsa gibi gayrimenkullerinizin değerini artırın. Kutal Drone profesyonel 4K havadan çekim hizmetleri sunar."
