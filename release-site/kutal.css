@@ -26,3 +26,46 @@ main [class*="text-ink/64"]{color:#536975!important}.kutal-gallery .counter{colo
 .kutal-brand-loader{font-family:var(--font-switzer,Arial,sans-serif)}
 html.kutal-resume-static .kutal-loading-screen{display:none!important}
 html.kutal-page-leaving body{opacity:0;transition:opacity .16s ease;pointer-events:none}html.kutal-page-enter .kutal-page main{animation:kutal-document-in .28s ease both}@keyframes kutal-document-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){html.kutal-page-leaving body{opacity:1;transition:none;pointer-events:auto}html.kutal-page-enter .kutal-page main{animation:none!important}}
+
+/* Phone-only layout. Desktop selectors and choreography stay unchanged. */
+@media(max-width:767px){
+ html{scroll-behavior:auto!important}
+ #hero [class*="bg-[url(/hero/aevion.svg)]"]{background-image:none!important}
+ #hero [class*="bg-[url(/hero/aevion.svg)]"]:after{content:'KUTAL DRONE';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;white-space:nowrap;font-size:clamp(34px,10.5vw,78px);font-weight:500;letter-spacing:-.055em;color:#657f8d;opacity:.72}
+ #intro-section{position:relative}#intro-section>div{position:relative}
+ #drone-lock{height:260svh!important;padding:0 12px!important;margin-bottom:0!important}
+ #drone-lock>div{position:sticky!important;top:76px!important;height:calc(100svh - 76px)!important;padding:0!important;display:flex;align-items:flex-end;padding-bottom:8svh!important}
+ #gear-dome{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;padding:0!important;border-top:1px solid #bdc8cd!important;border-bottom:1px solid #bdc8cd!important;min-height:140px}
+ #gear-dome>svg,#gear-dome>div.pointer-events-none{display:none!important}
+ #gear-dome>div.col-span-4{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;padding:20px 4px!important;height:auto!important;min-width:0;grid-column:auto!important;order:initial!important;border:0!important;transition:background .4s ease,transform .4s ease;opacity:.55}
+ #gear-dome>div.col-span-4+div{border-left:1px solid #c8d2d7!important}
+ #gear-dome>div.col-span-4>span{padding:0!important;margin:0!important;max-width:100%}
+ #gear-dome p{font-size:clamp(22px,6.5vw,40px)!important;line-height:1.2!important;letter-spacing:-.05em!important}
+ #gear-dome span.font-mono{font-size:8px!important;line-height:1.6!important;white-space:normal;text-align:center}
+ #gear-dome[data-active="0"]>div.col-span-4:nth-last-child(3),#gear-dome[data-active="1"]>div.col-span-4:nth-last-child(2),#gear-dome[data-active="2"]>div.col-span-4:last-child{opacity:1;background:#e2ebef;transform:translateY(-8px)}
+ #solutions .kutal-service-scope{padding-top:0;color:#24363f;font-weight:400}
+ #solutions .kutal-service-scope dl>div{grid-template-columns:1fr;gap:7px;padding:18px 0}
+ #solutions .kutal-service-scope dt{font-size:12px;font-weight:500;color:#4c6471;letter-spacing:.03em}
+ #solutions .kutal-service-scope dd{font-size:16px;line-height:1.65;color:#24363f;font-weight:400;max-width:none}
+ #solutions .kutal-text-link{font-size:16px;line-height:1.5;font-weight:500;color:#24363f;min-height:48px}
+ #capabilities-section>div.sticky{top:76px;height:calc(100svh - 76px);padding-bottom:12px}
+ #capabilities-section>div.sticky>div:first-child{padding:8px 0 12px;gap:0}
+ #capabilities-section>div.sticky>div:first-child>div{display:none}
+ #capabilities-section h2{font-size:clamp(48px,8svh,68px)!important;line-height:1!important}
+ #capabilities-section nav{flex-direction:row!important;gap:8px}
+ #capabilities-section nav button{width:auto!important;flex:1;min-height:44px}
+ #capabilities-section nav button>span{font-size:clamp(18px,5vw,25px)!important;scale:1!important;translate:0!important;line-height:1.2!important}
+ #capabilities-section nav button[aria-pressed=true]{border-bottom:2px solid #24363f}
+ #capabilities-section nav button[aria-pressed=false]>span{color:#607480}
+ #capabilities-visual{background:#edf2f4!important;min-height:170px}
+ .kutal-footer-grid{grid-template-columns:1fr!important;padding:24px 0!important;gap:0!important}
+ .kutal-footer-services,.kutal-footer-company,.kutal-footer-bottom nav{display:none!important}
+ .kutal-footer-address{grid-column:auto!important;border:0!important;padding:0!important}
+ .kutal-footer-address address{font-size:15px;line-height:1.8;color:#24363f}
+ .kutal-footer-address .kutal-map-link{font-size:15px;min-height:48px}
+ .kutal-footer-bottom{padding:20px 0!important}.kutal-footer-bottom p{font-size:12px}
+ .kutal-footer-bottom p:after{content:'. Tüm hakları saklıdır.'}
+}
+
+@media(max-width:767px) and (prefers-reduced-motion:reduce){#capabilities-visual{background:#edf2f4 url('/capabilities/scan.webp') center/contain no-repeat!important}}
+@media(max-width:767px){html.kutal-model-fallback #capabilities-visual{background:#edf2f4 url('/capabilities/scan.webp') center/contain no-repeat!important}}
