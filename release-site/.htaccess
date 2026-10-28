@@ -1,0 +1,11 @@
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddType application/wasm .wasm
+AddType model/gltf-binary .glb
+AddType application/octet-stream .riv
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^contact/?$ /iletisim/ [R=301,L]
+RewriteRule ^(fotogrametri|3d-haritalama)/?$ /hava-fotografciligi/ [R=301,L]
+</IfModule>
