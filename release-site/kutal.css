@@ -115,6 +115,41 @@ html.kutal-page-leaving body{opacity:0;transition:opacity .16s ease;pointer-even
 
 @media(max-width:767px){#capabilities-visual{max-height:280px}}
 
+/* Outrank the recovered component's late-injected 140vw mobile canvas rule. */
+@media(max-width:767px){
+ .drone-overlay-clip[data-kutal-mobile] .drone-overlay-canvas{width:100%!important;height:100%!important;left:0!important;translate:none!important;scale:1!important}
+}
+
+/* Full-viewport authored flight canvas, matching desktop scroll choreography. */
+@media(max-width:767px){
+ .drone-overlay-clip .drone-overlay-canvas{width:100%!important;height:100%!important;left:0!important;translate:none!important;scale:1!important}
+}
+
+/* Compact mobile flight stage: reserve a short scene rather than a full screen. */
+@media(max-width:767px){
+ #drone-lock{height:160svh!important}
+ #drone-lock>div{height:clamp(340px,58svh,520px)!important;padding-bottom:24px!important}
+ #gear-dome{min-height:120px}
+ #gear-dome>div.col-span-4{padding:16px 4px!important}
+}
+
+
+/* Mobile gear scene flows with the page; no pinned spacer or empty scroll runway. */
+@media(max-width:767px){
+ #drone-lock{height:344px!important;padding:0 12px!important;margin:0 0 24px!important}
+ #drone-lock>div{position:relative!important;top:auto!important;height:344px!important;padding:0!important;display:flex!important;align-items:flex-end!important}
+ #gear-dome{min-height:120px;margin:0!important}
+}
+
+.kutal-mobile-socials{display:none}
+@media(max-width:767px){
+ #contact .kutal-footer-grid{display:none!important}
+ #contact .kutal-mobile-socials{display:flex;justify-content:center;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #c8d2d7}
+ .kutal-mobile-socials a{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;color:#24363f;border-radius:50%}
+ .kutal-mobile-socials svg{width:25px;height:25px}
+ .kutal-mobile-socials a:focus-visible{outline:2px solid #007d9e;outline-offset:3px}
+}
+
 /* WhatsApp's green with dark text for readable contrast. */
 .kutal-hero-actions a.kutal-hero-secondary{background:#25d366;border-color:#1ca654;color:#073c24;gap:9px;font-weight:500;transition:background .2s ease,border-color .2s ease}
 .kutal-hero-actions a.kutal-hero-secondary:hover{background:#20c65e;border-color:#128c4a}

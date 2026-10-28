@@ -1,6 +1,6 @@
 {
   "name": "kutaldrone-static",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "private": true,
   "scripts": {
     "build": "node scripts/verify-release.cjs"
